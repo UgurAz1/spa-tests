@@ -1,0 +1,19 @@
+{
+  "name": "spa-tests",
+  "version": "1.0.0",
+  "description": "Playwright tests for SPA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UgurAz1/spa-tests.git"
+  },
+  "author": "Ugur Ayvaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UgurAz1/spa-tests/issues"
+  },
+  "homepage": "https://github.com/UgurAz1/spa-tests#readme"
+}
