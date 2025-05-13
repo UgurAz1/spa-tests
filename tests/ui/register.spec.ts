@@ -15,8 +15,8 @@ test('TC-R01: Registration and confirmation', async ({ page }) => {
   const pages = new PageManager(page);
   const emailAddress = process.env.MAILBOX_ORG_EMAIL!;
   const password = generatePassword(12, '!A1')
-  const account = pages.headerManager.accountManager
-  const mailboxPage = pages.mailboxPage
+  const account = pages.header.accountManager
+  const mailboxPage = pages.mailbox
 
   console.log('📝 E-Mail:', emailAddress);
   console.log('📝 Passwort:', password);

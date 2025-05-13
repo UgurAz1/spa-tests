@@ -6,7 +6,7 @@ import { UserHelper } from '../../utils/UserHelper';
 
 test('TC-S01: Subscribe to newsletter', async ({ page }) => {
   const pages = new PageManager(page)
-  const mailbox = pages.mailboxPage
+  const mailbox = pages.mailbox
   const user = UserHelper.load()
 
   await page.goto('/');
