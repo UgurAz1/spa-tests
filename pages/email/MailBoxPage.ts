@@ -35,7 +35,6 @@ export class MailboxPage extends BasePage {
     await this.page.waitForTimeout(waitTime);
     // await this.page.getByRole('button', { name: 'E-Mail' }).click();
     await this.page.getByLabel(subjectText).getByText(subjectText).first().click();
-    console.log(`E-Mail mit Betreff "${subjectText}" geöffnet.`);
   }
 
   async confirmRegistration() {
@@ -57,9 +56,7 @@ export class MailboxPage extends BasePage {
 
     const downloadPromise = this.page.waitForEvent('download');
     await this.page.getByRole('menuitem', { name: 'Herunterladen' }).click();
-    const download = await downloadPromise;
-
-    await download.saveAs('C:/Users/Rechnung.pdf')
+    await downloadPromise;
 
   }
 }

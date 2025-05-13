@@ -55,7 +55,6 @@ export class BookingPage extends BasePage {
   async selectTime() {
     const times = generateTimeSlots(9, 17)
 
-    console.log("times: ", times)
     for (const time of times) {
       const label = this.page.locator('label', { hasText: time }).first();
       if (await label.count() > 0 && await label.isVisible()) {

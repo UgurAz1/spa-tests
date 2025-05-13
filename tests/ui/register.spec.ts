@@ -18,9 +18,6 @@ test('TC-R01: Registration and confirmation', async ({ page }) => {
   const account = pages.header.accountManager
   const mailboxPage = pages.mailbox
 
-  console.log('📝 E-Mail:', emailAddress);
-  console.log('📝 Passwort:', password);
-
   await page.goto('/');
   await account.openAccountEntryPoint()
   await account.loginPage.gotToRegister()

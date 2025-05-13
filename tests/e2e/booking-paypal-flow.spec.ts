@@ -7,43 +7,34 @@ test('TC-E2E: Complete booking flow with PayPal payment', async ({ page, browser
   await page.goto('/');
 
   await pages.acceptCookiesIfVisible()
-  await pages.header.navigationManager.goToStores()
-  console.log('selecting store...');
-  await pages.bookingPage.selectFiliale('München');
-  console.log('setting check in date...');
-  await pages.bookingPage.setCheckinDateFromToday(16);
-  console.log('selecting persons...');
-  await pages.bookingPage.selectPersons(1);
-  console.log('selecting duration...');
-  await pages.bookingPage.selectDuration(2);
-  console.log('submitting booking');
-  await pages.bookingPage.submitBooking();
+  await pages.headerNavigation.goToStores()
+  await pages.booking.selectFiliale('München');
+  await pages.booking.setCheckinDateFromToday(16);
+  await pages.booking.selectPersons(1);
+  await pages.booking.selectDuration(2);
+  await pages.booking.submitBooking();
   await page.waitForTimeout(2000);
-  console.log('selecting time');
-  await pages.bookingPage.selectTime();
-  console.log('confirming booking...');
-  await pages.bookingPage.bookWellzone();
-  console.log('skipping insurance');
-  await pages.bookingPage.skipInsurance();
-  console.log('checking checkboxes');
-  await pages.bookingPage.scrollToCheckout();
-  await pages.bookingPage.acceptTermsAndPrivacy();
-  console.log('confirming booking');
+  await pages.booking.selectTime();
+  await pages.booking.bookWellzone();
+  await pages.booking.skipInsurance();
+  await pages.booking.scrollToCheckout();
+  await pages.booking.acceptTermsAndPrivacy();
 
-  await pages.bookingPage.confirmBooking();
+  await pages.booking.confirmBooking();
 
-  await pages.bookingPage.pickPaymentMethod("PayPal");
-  await pages.bookingPage.continuePayment();
+  await pages.booking.pickPaymentMethod("PayPal");
+  await pages.booking.continuePayment();
   await page.waitForTimeout(5000);
 
-  console.log('Inserting Paypal email and password...');
+  await pages.booking.loginToPaypalAndPay();
 
-  await pages.bookingPage.loginToPaypalAndPay();
+  const page1Promise = page.waitForEvent('load');
+  const page1 = await page1Promise;
 
-  // await expect(page.locator('text=YOUR PAYMENT IS BEING PROCESSED...')).toBeVisible({ timeout: 10000 });
+  await expect(page1.getByText('Your booking was successful')).toBeVisible();
 
-  await pages.mailboxPage.login();
-  await pages.mailboxPage.openInbox();
-  await pages.mailboxPage.openEmailBySubject('Buchungsbestätigung');
-  await pages.mailboxPage.downloadAttachment('Rechnung.pdf');
+  await pages.mailbox.login();
+  await pages.mailbox.openInbox();
+  await pages.mailbox.openEmailBySubject('Buchungsbestätigung');
+  await pages.mailbox.downloadAttachment('Rechnung.pdf');
 });
