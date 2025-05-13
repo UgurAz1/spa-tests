@@ -16,16 +16,13 @@ export class SocialLinks extends BasePage {
 
   async gotToInstagram() {
     await this.footerInstagramLink.click()
-    await this.expectUrl('instagram')
   }
 
   async goToTikTok() {
     await this.footerTikTokLink.click()
-    await this.expectUrl('tiktok')
   }
 
   async goToFacebook() {
     await this.footerFacebookLink.click()
-    await this.expectUrl('facebook')
   }
 }

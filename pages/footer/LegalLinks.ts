@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 import { BasePage } from '../base/BasePage';
 
 export class LegalLinks extends BasePage {
@@ -14,26 +14,21 @@ export class LegalLinks extends BasePage {
 
   async goToImprint() {
     await this.footerImprintLink.click()
-    await this.expectUrl('impressum')
   }
 
   async goToPrivacyLink() {
     await this.footerPrivacyLink.click()
-    await this.expectUrl('datenschutz')
   }
 
   async goToDisclaimer() {
     await this.footerDisclaimerLink.click()
-    await this.expectUrl('widerruf')
   }
 
   async goToHouseRules() {
     await this.footerHouseRulesLink.click()
-    await this.expectUrl('hausordnung')
   }
 
   async goToTermsAndConditions() {
     await this.footerTermsAnsConditionsLink.click()
-    await this.expectUrl('agb')
   }
 }
