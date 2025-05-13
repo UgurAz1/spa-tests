@@ -32,6 +32,7 @@ test('TC-E2E: Complete booking flow with PayPal payment', async ({ page, browser
   const page1 = await page1Promise;
 
   await expect(page1.getByText('Your booking was successful')).toBeVisible();
+  await page1.screenshot({ path: 'screenshots/paymentSuccess.png', })
 
   await pages.mailbox.login();
   await pages.mailbox.openInbox();
