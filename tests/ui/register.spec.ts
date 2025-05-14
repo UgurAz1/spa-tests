@@ -7,10 +7,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
-
-test.use({ storageState: { cookies: [], origins: [] } });
-
 test('TC-R01: Registration and confirmation', async ({ page }) => {
   const pages = new PageManager(page);
   const emailAddress = process.env.MAILBOX_ORG_EMAIL!;

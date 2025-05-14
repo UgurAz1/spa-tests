@@ -2,8 +2,6 @@ import { test, expect, request } from '@playwright/test';
 import { PageManager } from '../../pages/PageManager';
 import { UserHelper } from '../../utils/UserHelper';
 
-test.use({ storageState: { cookies: [], origins: [] } });
-
 test('TC-L01: Login mit gültigen Daten', async ({ page }) => {
   const pages = new PageManager(page);
   const account = pages.header.accountManager

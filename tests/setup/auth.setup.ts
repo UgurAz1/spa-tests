@@ -9,7 +9,7 @@ const storageStatePath = '.auth/state.json';
 setup('Login and save storage state', async ({ }) => {
   const user = UserHelper.load();
 
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch();
   const context = await browser.newContext();
   const page = await context.newPage();
   const pages = new PageManager(page)

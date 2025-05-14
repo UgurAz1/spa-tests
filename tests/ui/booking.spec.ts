@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { PageManager } from '../../pages/PageManager';
 import { format } from 'date-fns';
 
-test.only('TC-B01: Booking selection with required information and submit', async ({ page }) => {
+test('TC-B01: Booking selection with required information and submit', async ({ page }) => {
   const pages = new PageManager(page);
   const location = 'München';
   const checkinOffsetInDays = 2;
@@ -17,11 +17,11 @@ test.only('TC-B01: Booking selection with required information and submit', asyn
 
   await page.goto('/');
 
-  await pages.bookingPage.selectFiliale(location);
-  await pages.bookingPage.setCheckinDateFromToday(checkinOffsetInDays);
-  await pages.bookingPage.selectPersons(visitors);
-  await pages.bookingPage.selectDuration(durationInHours);
-  await pages.bookingPage.submitBooking();
+  await pages.booking.selectFiliale(location);
+  await pages.booking.setCheckinDateFromToday(checkinOffsetInDays);
+  await pages.booking.selectPersons(visitors);
+  await pages.booking.selectDuration(durationInHours);
+  await pages.booking.submitBooking();
 
   const animation = page.locator('#animation-container');
 

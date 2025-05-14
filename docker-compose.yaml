@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  playwright-test:
+    image: playwright-test:v1.0.0
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: npm run mySpa-chrome
+    volumes:
+      - ./test-data:/app/test-data
+      - ./playwright-report/:/app/playwright-report
+      - ./test-results/:/app/test-results
+      - ./.env:/app/.env
+      - ./.auth:/app/.auth
