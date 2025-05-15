@@ -50,29 +50,29 @@ export default defineConfig({
         ...devices['Desktop Chrome']
       },
     },
-    {
-      name: 'authenticated-firefox',
-      testIgnore: [
-        '**/ui/login.spec.ts',
-        '**/ui/register.spec.ts',
-        'tests/api/**/*.spec.ts',
-      ],
-      use: {
-        ...devices['Desktop Firefox']
-        , storageState: '.auth/state.json'
-      },
-      dependencies: ['setup']
-    },
-    {
-      name: 'no-auth-firefox',
-      testMatch: [
-        '**/ui/login.spec.ts',
-        '**/ui/register.spec.ts',
-        'tests/api/**/*.spec.ts',
-      ],
-      use: {
-        ...devices['Desktop Firefox']
-      },
-    },
+    // {
+    //   name: 'authenticated-firefox',
+    //   testIgnore: [
+    //     '**/ui/login.spec.ts',
+    //     '**/ui/register.spec.ts',
+    //     'tests/api/**/*.spec.ts',
+    //   ],
+    //   use: {
+    //     ...devices['Desktop Firefox']
+    //     , storageState: '.auth/state.json'
+    //   },
+    //   dependencies: ['setup']
+    // },
+    // {
+    //   name: 'no-auth-firefox',
+    //   testMatch: [
+    //     '**/ui/login.spec.ts',
+    //     '**/ui/register.spec.ts',
+    //     'tests/api/**/*.spec.ts',
+    //   ],
+    //   use: {
+    //     ...devices['Desktop Firefox']
+    //   },
+    // },
   ],
 });

@@ -16,11 +16,11 @@ test('TC-R01: Registration and confirmation', async ({ page }) => {
 
   await page.goto('/');
   await account.openAccountEntryPoint()
-  await account.loginPage.gotToRegister()
+  const registerPage = await account.login.gotToRegister()
 
   const fakeUser = generateFakeUser(emailAddress, password)
 
-  await account.registerPage.register(fakeUser)
+  await registerPage.register(fakeUser)
 
   await mailboxPage.login();
   await mailboxPage.openInbox();

@@ -18,8 +18,8 @@ setup('Login and save storage state', async ({ }) => {
   await page.goto('/login');
 
   await header.languageSwitcher.selectLanguage('English');
-  await header.accountManager.openAccountEntryPoint()
-  await header.accountManager.loginPage.login(user.email, user.password);
+  await header.accountManager.goToLogin()
+  await header.accountManager.login.login(user.email, user.password);
 
   const [userInfoResponse] = await Promise.all([
     page.waitForResponse(r => r.url().includes('/UserInfo') && r.status() === 200),

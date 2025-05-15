@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from '../base/BasePage';
+import { RegisterPage } from './RegisterPage';
 
 export class LoginPage extends BasePage {
   readonly emailField = this.page.locator('#email').first()
@@ -24,6 +25,7 @@ export class LoginPage extends BasePage {
 
   async gotToRegister() {
     await this.registerButton.click()
+    return new RegisterPage(this.page)
   }
 
   async goToResetPassword() {

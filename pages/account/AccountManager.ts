@@ -1,19 +1,14 @@
 import { Page, Locator } from '@playwright/test';
 import { BasePage } from '../base/BasePage';
 import { LoginPage } from './LoginPage';
-import { RegisterPage } from './RegisterPage';
 import { Profile } from '../profile/Profile';
 
 export class AccountManager extends BasePage {
-  readonly loginPage: LoginPage
-  readonly registerPage: RegisterPage
-  readonly profile: Profile
+  private readonly loginPage: LoginPage
 
   constructor(page: Page) {
     super(page)
     this.loginPage = new LoginPage(page)
-    this.registerPage = new RegisterPage(page)
-    this.profile = new Profile(page)
   }
 
   async openAccountEntryPoint() {
@@ -25,7 +20,21 @@ export class AccountManager extends BasePage {
     return new Profile(this.page)
   }
 
+  async goToLogin(): Promise<LoginPage> {
+    await this.openAccountEntryPoint();
+    return this.login;
+  }
+
   async logout() {
     await this.page.locator('#profileMenu').getByRole('link', { name: 'Logout' }).click()
   }
+
+  get login() {
+    return this.loginPage
+  }
+
+  get profile() {
+    return new Profile(this.page)
+  }
+
 }

@@ -2,7 +2,7 @@ import { Page, expect } from '@playwright/test';
 import { BasePage } from '../base/BasePage';
 require('dotenv').config();
 
-export class MailboxPage extends BasePage {
+export class MailboxManager extends BasePage {
   constructor(page: Page) {
     super(page);
 
@@ -30,16 +30,14 @@ export class MailboxPage extends BasePage {
   }
 
   async openEmailBySubject(subjectText: string) {
-    // await this.page.getByLabel(subjectText, { exact: true }).getByText(subjectText).click();
     const waitTime = subjectText.includes('Buchungsbestätigung') ? 60000 : 20000;
     await this.page.waitForTimeout(waitTime);
-    // await this.page.getByRole('button', { name: 'E-Mail' }).click();
     await this.page.getByLabel(subjectText).getByText(subjectText).first().click();
   }
 
   async confirmRegistration() {
     const page1Promise = this.page.waitForEvent('popup');
-    await this.page.locator('iframe[title="E-Mail-Inhalt"]').contentFrame().getByRole('cell', { name: 'E-Mailadresse bestätigen' }).click();
+    await this.page.locator('iframe[title="E-Mail-Inhalt"]').contentFrame().getByRole('cell', { name: 'E-Mailadresse bestätigen' }).nth(1).click();
     const page1 = await page1Promise;
 
     await page1.goto(`${process.env.BASE_URL}/login?success=true`);

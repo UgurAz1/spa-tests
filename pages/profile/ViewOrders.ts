@@ -11,13 +11,32 @@ export class ViewOrders extends BasePage {
   }
 
 
-  async cancelOrder(orderNumber: number) {
-    await this.order.nth(-1 + orderNumber).click();
-    await this.cancelButton.click();
+  async cancelFirstCancelableOrder() {
+    await this.order.first().waitFor({ state: 'visible' });
+    const orderCount = await this.order.count();
+
+    for (let i = 0; i < orderCount; i++) {
+      await this.order.nth(i).click();
+
+      if (await this.cancelButton.isVisible({ timeout: 500 })) {
+        await this.cancelButton.click();
+        return;
+      }
+    }
+
   }
 
+  // async cancelOrder(orderNumber: number) {
+  //   await this.order.nth(orderNumber - 1).click();
+  //   if (await this.cancelButton.isVisible()) {
+  //     await this.cancelButton.click();
+  //   } else {
+  //     await this.invoiceButton.click();
+  //   }
+  // }
+
   async downloadInvoice(orderNumber: number) {
-    await this.order.nth(-1 + orderNumber).click();
+    await this.order.nth(orderNumber - 1).click();
     await this.invoiceButton.click()
   }
 }

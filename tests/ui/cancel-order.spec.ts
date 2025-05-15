@@ -9,8 +9,8 @@ test('TC-D01: Cancel order by number', async ({ page }) => {
   await pages.header.accountManager.openAccountEntryPoint()
   await pages.header.accountManager.goToProfile()
   const orders = await pages.header.accountManager.profile.viewOrders();
-  await orders.cancelOrder(1)
+  await orders.cancelFirstCancelableOrder()
 
-  //  await expect(page.getByText('Order successfully canceled.').toBeVisible()))
+  await expect(page.getByText('Order successfully canceled.')).toBeVisible({ timeout: 7000 })
 
 });

@@ -1,21 +1,21 @@
 import { Page } from '@playwright/test';;
 import { BasePage } from './base/BasePage';
-import { BookingPage } from './booking/BookingPage';
-import { MailboxPage } from './email/MailBoxPage';
+import { BookingManager } from './booking/BookingManager';
+import { MailboxManager } from './email/MailBoxManager';
 import { HeaderManager } from './header/HeaderManager';
 import { FooterManager } from './footer/FooterManager';
 
 
 export class PageManager extends BasePage {
-  private readonly bookingPage: BookingPage;
-  private readonly mailboxPage: MailboxPage;
+  private readonly bookingManager: BookingManager;
+  private readonly mailboxManager: MailboxManager;
   private readonly headerManager: HeaderManager;
   private readonly footerManager: FooterManager;
 
   constructor(page: Page) {
     super(page)
-    this.bookingPage = new BookingPage(page);
-    this.mailboxPage = new MailboxPage(page);
+    this.bookingManager = new BookingManager(page);
+    this.mailboxManager = new MailboxManager(page);
     this.headerManager = new HeaderManager(page);
     this.footerManager = new FooterManager(page)
   }
@@ -33,11 +33,11 @@ export class PageManager extends BasePage {
   }
 
   get booking() {
-    return this.bookingPage
+    return this.bookingManager
   }
 
   get mailbox() {
-    return this.mailboxPage
+    return this.mailboxManager
   }
 
   get headerNavigation() {
@@ -45,15 +45,15 @@ export class PageManager extends BasePage {
   }
 
   get footerNavigation() {
-    return this.footer.navigationLinks
+    return this.footer.footerNavigationLinks
   }
 
   get footerLegalLinks() {
-    return this.footer.legalLinks
+    return this.footer.footerLegalLinks
   }
 
   get footerSocialLinks() {
-    return this.footer.socialLinks
+    return this.footer.footerSocialinks
   }
 }
 

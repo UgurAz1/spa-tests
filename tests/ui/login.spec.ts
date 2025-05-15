@@ -10,7 +10,7 @@ test('TC-L01: Login mit gültigen Daten', async ({ page }) => {
   await page.goto('/');
 
   await account.openAccountEntryPoint();
-  await account.loginPage.login(user.email, user.password)
+  await account.login.login(user.email, user.password)
 
   await expect(page.getByText('Welcome back')).toBeVisible()
 });

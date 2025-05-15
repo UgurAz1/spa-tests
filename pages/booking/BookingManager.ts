@@ -4,7 +4,7 @@ import { generateTimeSlots } from '../../helpers/timeHelpers';
 import dotenv from 'dotenv';
 dotenv.config();
 
-export class BookingPage extends BasePage {
+export class BookingManager extends BasePage {
   readonly filialSelector: Locator;
   readonly checkinSelector: Locator;
   readonly personsSelector: Locator;
@@ -62,7 +62,6 @@ export class BookingPage extends BasePage {
         return;
       }
     }
-
   }
 
   async bookWellzone() {
@@ -101,18 +100,6 @@ export class BookingPage extends BasePage {
   async continuePayment() {
     await this.page.getByRole('button', { name: "Pay Now" }).click()
   }
-
-  // async insertPayPalEmail() {
-  //   await this.page.locator('#emailInput').fill(`${env.PAYPAL_BUYER_EMAIL}`);
-  // }
-
-  // async insertPayPalPassword() {
-  //   await this.page.locator('#password').fill(`${env.PAYPAL_BUYER_PASSWORD}`);
-  // }
-
-  // async confirmPaypalPayment() {
-  //   await this.page.getByRole('button', { name: "Weiter zur Überprüfung der Bestellung" }).click()
-  // }
 
   async loginToPaypalAndPay() {
     const emailInput = this.page.locator('input[name="login_email"]');
