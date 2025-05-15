@@ -1,28 +1,27 @@
-import { expect, Locator, Page } from '@playwright/test';
-import { BasePage } from '../base/BasePage';
+import { Locator, Page } from "@playwright/test";
+import { BasePage } from "../base/BasePage";
 
 export class SocialLinks extends BasePage {
-  private readonly footerInstagramLink: Locator
-  private readonly footerTikTokLink: Locator
-  private readonly footerFacebookLink: Locator
+  private readonly footerInstagramLink: Locator;
+  private readonly footerTikTokLink: Locator;
+  private readonly footerFacebookLink: Locator;
 
   constructor(page: Page) {
-    super(page)
-    this.footerInstagramLink = page.getByRole('link', { name: 'instagram' })
-    this.footerTikTokLink = page.getByRole('link', { name: 'tiktok' })
-    this.footerFacebookLink = page.getByRole('link', { name: 'facebook' })
+    super(page);
+    this.footerInstagramLink = page.getByRole("link", { name: "instagram" });
+    this.footerTikTokLink = page.getByRole("link", { name: "tiktok" });
+    this.footerFacebookLink = page.getByRole("link", { name: "facebook" });
   }
 
-
   async gotToInstagram() {
-    await this.footerInstagramLink.click()
+    await this.footerInstagramLink.click();
   }
 
   async goToTikTok() {
-    await this.footerTikTokLink.click()
+    await this.footerTikTokLink.click();
   }
 
   async goToFacebook() {
-    await this.footerFacebookLink.click()
+    await this.footerFacebookLink.click();
   }
 }

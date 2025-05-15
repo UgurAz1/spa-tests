@@ -1,8 +1,8 @@
-import { Page } from '@playwright/test';
-import { NavigationLinks } from './NavigationLinks';
-import { LegalLinks } from './LegalLinks';
-import { SocialLinks } from './SocialLinks';
-import { BasePage } from '../base/BasePage';
+import { Page } from "@playwright/test";
+import { NavigationLinks } from "./NavigationLinks";
+import { LegalLinks } from "./LegalLinks";
+import { SocialLinks } from "./SocialLinks";
+import { BasePage } from "../base/BasePage";
 
 export class FooterManager extends BasePage {
   private readonly navigationLinks: NavigationLinks;
@@ -10,19 +10,19 @@ export class FooterManager extends BasePage {
   private readonly socialLinks: SocialLinks;
 
   constructor(page: Page) {
-    super(page)
+    super(page);
     this.navigationLinks = new NavigationLinks(page);
     this.legalLinks = new LegalLinks(page);
     this.socialLinks = new SocialLinks(page);
   }
 
   get footerNavigationLinks() {
-    return this.navigationLinks
+    return this.navigationLinks;
   }
   get footerLegalLinks() {
-    return this.legalLinks
+    return this.legalLinks;
   }
   get footerSocialinks() {
-    return this.socialLinks
+    return this.socialLinks;
   }
 }

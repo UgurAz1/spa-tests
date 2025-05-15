@@ -1,53 +1,53 @@
-import { defineConfig, devices } from '@playwright/test';
-import dotenv from 'dotenv';
+import { defineConfig, devices } from "@playwright/test";
+import dotenv from "dotenv";
 dotenv.config();
 
 export default defineConfig({
   timeout: 240000,
-  testDir: './tests',
+  testDir: "./tests",
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: [
-    ['json', { outputFile: 'test-results/jsonReport.json' }],
-    ['junit', { outputFile: 'test-results/junitReport.xml' }],
-    ['html']
+    ["json", { outputFile: "test-results/jsonReport.json" }],
+    ["junit", { outputFile: "test-results/junitReport.xml" }],
+    ["html"],
   ],
   use: {
-    trace: 'on-first-retry',
+    trace: "on-first-retry",
     baseURL: process.env.BASE_URL,
-    locale: 'en-US',
+    locale: "en-US",
     headless: true,
-    ignoreHTTPSErrors: true
+    ignoreHTTPSErrors: true,
   },
 
   projects: [
     {
-      name: 'setup',
-      testMatch: 'setup/auth.setup.ts'
+      name: "setup",
+      testMatch: "setup/auth.setup.ts",
     },
     {
-      name: 'authenticated-chrome',
+      name: "authenticated-chrome",
       testIgnore: [
-        '**/ui/login.spec.ts',
-        '**/ui/register.spec.ts',
-        'tests/api/**/*.spec.ts',
+        "**/ui/login.spec.ts",
+        "**/ui/register.spec.ts",
+        "tests/api/**/*.spec.ts",
       ],
       use: {
-        ...devices['Desktop Chrome']
-        , storageState: '.auth/state.json'
+        ...devices["Desktop Chrome"],
+        storageState: ".auth/state.json",
       },
-      dependencies: ['setup']
+      dependencies: ["setup"],
     },
     {
-      name: 'no-auth-chrome',
+      name: "no-auth-chrome",
       testMatch: [
-        '**/ui/login.spec.ts',
-        '**/ui/register.spec.ts',
-        'tests/api/**/*.spec.ts',
+        "**/ui/login.spec.ts",
+        "**/ui/register.spec.ts",
+        "tests/api/**/*.spec.ts",
       ],
       use: {
-        ...devices['Desktop Chrome']
+        ...devices["Desktop Chrome"],
       },
     },
     // {

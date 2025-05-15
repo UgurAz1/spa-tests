@@ -1,14 +1,14 @@
-import { test, expect } from '@playwright/test';
-import { PageManager } from '../../pages/PageManager';
+import { test, expect } from "@playwright/test";
+import { PageManager } from "../../pages/PageManager";
 
-test('TC-E2E: Complete booking flow with PayPal payment', async ({ page, browser }) => {
+test("TC-E2E: Complete booking flow with PayPal payment", async ({ page }) => {
   const pages = new PageManager(page);
 
-  await page.goto('/');
+  await page.goto("/");
 
-  await pages.acceptCookiesIfVisible()
-  await pages.headerNavigation.goToStores()
-  await pages.booking.selectFiliale('München');
+  await pages.acceptCookiesIfVisible();
+  await pages.headerNavigation.goToStores();
+  await pages.booking.selectFiliale("München");
   await pages.booking.setCheckinDateFromToday(16);
   await pages.booking.selectPersons(1);
   await pages.booking.selectDuration(2);
@@ -28,14 +28,14 @@ test('TC-E2E: Complete booking flow with PayPal payment', async ({ page, browser
 
   await pages.booking.loginToPaypalAndPay();
 
-  const page1Promise = page.waitForEvent('load');
+  const page1Promise = page.waitForEvent("load");
   const page1 = await page1Promise;
 
-  await expect(page1.getByText('Your booking was successful')).toBeVisible();
-  await page1.screenshot({ path: 'screenshots/paymentSuccess.png', })
+  await expect(page1.getByText("Your booking was successful")).toBeVisible();
+  await page1.screenshot({ path: "screenshots/paymentSuccess.png" });
 
   await pages.mailbox.login();
   await pages.mailbox.openInbox();
-  await pages.mailbox.openEmailBySubject('Buchungsbestätigung');
-  await pages.mailbox.downloadAttachment('Rechnung.pdf');
+  await pages.mailbox.openEmailBySubject("Buchungsbestätigung");
+  await pages.mailbox.downloadAttachment("Rechnung.pdf");
 });

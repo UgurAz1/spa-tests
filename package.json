@@ -4,6 +4,11 @@
   "description": "Playwright tests for SPA",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "typecheck": "tsc --noEmit",
     "test": "npx playwright test",
     "mySpa-ci": "npx playwright test --reporter=html --project=authenticated-chrome --project=no-auth-chrome",
     "mySpa-chrome": "npx playwright test --project=authenticated-chrome --project=no-auth-chrome",
@@ -24,7 +29,12 @@
     "@faker-js/faker": "^9.7.0",
     "@playwright/test": "^1.51.1",
     "@types/node": "^22.14.0",
-    "ts-node": "^10.9.2"
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "eslint": "^9.26.0",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "date-fns": "^4.1.0",

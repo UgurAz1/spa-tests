@@ -1,6 +1,6 @@
-import fs from 'fs';
+import fs from "fs";
 
-const authFile = 'test-data/user.json'
+const authFile = "test-data/user.json";
 
 export interface TestUser {
   email: string;
@@ -13,7 +13,7 @@ export class UserHelper {
   }
 
   static load(): TestUser {
-    const raw = fs.readFileSync(authFile, 'utf-8');
+    const raw = fs.readFileSync(authFile, "utf-8");
     return JSON.parse(raw);
   }
 

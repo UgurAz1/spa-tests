@@ -1,26 +1,36 @@
-import { Page, Locator, expect } from '@playwright/test';
-import { BasePage } from '../base/BasePage';
-import { ChangeData } from './ChangeData';
-import { ManageAddress } from './ManageAddress';
-import { ViewOrders } from './ViewOrders';
-import { StartBooking } from './StartBooking';
+import { Page } from "@playwright/test";
+import { BasePage } from "../base/BasePage";
+import { ChangeData } from "./ChangeData";
+import { ManageAddress } from "./ManageAddress";
+import { ViewOrders } from "./ViewOrders";
+import { StartBooking } from "./StartBooking";
 
 export class Profile extends BasePage {
-  readonly changeDataLink = this.page.getByRole('link', { name: 'Change my data' })
-  readonly manageAddressLink = this.page.getByRole('link', { name: 'Manage Addresses' })
-  readonly viewOrdersLink = this.page.getByRole('link', { name: 'View my orders' })
-  readonly startBookingLink = this.page.getByRole('link', { name: 'Start a new booking' })
+  readonly changeDataLink = this.page.getByRole("link", {
+    name: "Change my data",
+  });
+  readonly manageAddressLink = this.page.getByRole("link", {
+    name: "Manage Addresses",
+  });
+  readonly viewOrdersLink = this.page.getByRole("link", {
+    name: "View my orders",
+  });
+  readonly startBookingLink = this.page.getByRole("link", {
+    name: "Start a new booking",
+  });
 
   constructor(page: Page) {
-    super(page)
+    super(page);
   }
 
-  async clickSection(section: 'changeData' | 'manageAddresses' | 'viewOrders' | 'startBooking') {
+  async clickSection(
+    section: "changeData" | "manageAddresses" | "viewOrders" | "startBooking",
+  ) {
     const locatorMap = {
       changeData: this.changeDataLink,
       manageAddresses: this.manageAddressLink,
       viewOrders: this.viewOrdersLink,
-      startBooking: this.startBookingLink
+      startBooking: this.startBookingLink,
     };
 
     const locator = locatorMap[section];

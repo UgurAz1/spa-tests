@@ -1,6 +1,6 @@
-import fs from 'fs';
+import fs from "fs";
 
-const tokenFile = '../.auth/user.json'
+const tokenFile = "../.auth/user.json";
 
 export interface TokenData {
   access: string;
@@ -14,11 +14,11 @@ export class AuthHelper {
   }
 
   static loadToken(): TokenData {
-    const raw = fs.readFileSync(tokenFile, 'utf-8');
+    const raw = fs.readFileSync(tokenFile, "utf-8");
     return JSON.parse(raw);
   }
   static getUserInfo() {
-    const file = fs.readFileSync(tokenFile, 'utf-8');
+    const file = fs.readFileSync(tokenFile, "utf-8");
     return JSON.parse(file).userInfo;
   }
 }

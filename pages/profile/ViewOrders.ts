@@ -1,18 +1,21 @@
-import { Page, Locator, expect } from '@playwright/test';
-import { BasePage } from '../base/BasePage';
+import { Page } from "@playwright/test";
+import { BasePage } from "../base/BasePage";
 
 export class ViewOrders extends BasePage {
-  private readonly order = this.page.getByRole('img', { name: 'arrow-down' })
-  private readonly cancelButton = this.page.getByRole('button', { name: 'Cancel' })
-  private readonly invoiceButton = this.page.getByRole('button', { name: 'Invoice' })
+  private readonly order = this.page.getByRole("img", { name: "arrow-down" });
+  private readonly cancelButton = this.page.getByRole("button", {
+    name: "Cancel",
+  });
+  private readonly invoiceButton = this.page.getByRole("button", {
+    name: "Invoice",
+  });
 
   constructor(page: Page) {
-    super(page)
+    super(page);
   }
 
-
   async cancelFirstCancelableOrder() {
-    await this.order.first().waitFor({ state: 'visible' });
+    await this.order.first().waitFor({ state: "visible" });
     const orderCount = await this.order.count();
 
     for (let i = 0; i < orderCount; i++) {
@@ -23,7 +26,6 @@ export class ViewOrders extends BasePage {
         return;
       }
     }
-
   }
 
   // async cancelOrder(orderNumber: number) {
@@ -37,6 +39,6 @@ export class ViewOrders extends BasePage {
 
   async downloadInvoice(orderNumber: number) {
     await this.order.nth(orderNumber - 1).click();
-    await this.invoiceButton.click()
+    await this.invoiceButton.click();
   }
 }

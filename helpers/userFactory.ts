@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 
 export function generateFakeUser(emailAddress: string, password: string) {
   return {
@@ -6,7 +6,7 @@ export function generateFakeUser(emailAddress: string, password: string) {
     lastName: faker.person.lastName(),
     street: faker.location.street(),
     houseNumber: faker.string.numeric(2),
-    zip: faker.location.zipCode('#####'),
+    zip: faker.location.zipCode("#####"),
     city: faker.location.city(),
     countryNumber: faker.number.int({ min: 1, max: 259 }),
     email: emailAddress,

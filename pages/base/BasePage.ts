@@ -1,4 +1,4 @@
-import { Locator, Page, expect } from '@playwright/test';
+import { Locator, Page, expect } from "@playwright/test";
 
 export class BasePage {
   protected readonly page: Page;
@@ -25,17 +25,22 @@ export class BasePage {
 
   // todo: decline/configure
   async acceptCookiesIfVisible() {
-    const cookieButton = this.page.getByRole('button', { name: "Necessary only" })
+    const cookieButton = this.page.getByRole("button", {
+      name: "Necessary only",
+    });
     if (await cookieButton.isVisible()) {
       await cookieButton.click();
     }
   }
 
   async subscribeToNewsletter(email: string) {
-    const newsletterBanner = this.page.locator('.bg-white > div:nth-child(2) > div > .border-myspa-blue')
-    await newsletterBanner.click()
-    await this.page.getByRole('textbox', { name: 'E-Mail address *' }).fill(email);
-    await this.page.locator('form').getByRole('button').click();
+    const newsletterBanner = this.page.locator(
+      ".bg-white > div:nth-child(2) > div > .border-myspa-blue",
+    );
+    await newsletterBanner.click();
+    await this.page
+      .getByRole("textbox", { name: "E-Mail address *" })
+      .fill(email);
+    await this.page.locator("form").getByRole("button").click();
   }
-
 }

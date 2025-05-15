@@ -1,5 +1,5 @@
-import { test as base } from '@playwright/test';
-import { PageManager } from '../../pages/PageManager';
+import { test as base } from "@playwright/test";
+import { PageManager } from "../../pages/PageManager";
 
 type MyFixtures = {
   pages: PageManager;
@@ -12,4 +12,4 @@ export const test = base.extend<MyFixtures>({
   },
 });
 
-export { expect } from '@playwright/test';
+export { expect } from "@playwright/test";
