@@ -17,6 +17,24 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Create .env file from GitHub secrets
+      run: |
+        echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
+        echo "BASE_URL_BACKEND=${{ secrets.BASE_URL_BACKEND }}" >> .env
+        echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> .env
+        echo "PAYPAL_CLIENT_ID=${{ secrets.PAYPAL_CLIENT_ID }}" >> .env
+        echo "PAYPAL_SECRET=${{ secrets.PAYPAL_SECRET }}" >> .env
+        echo "PAYPAL_BUYER_EMAIL=${{ secrets.PAYPAL_BUYER_EMAIL }}" >> .env
+        echo "PAYPAL_BUYER_PASSWORD=${{ secrets.PAYPAL_BUYER_PASSWORD }}" >> .env
+        echo "MAILBOX_ORG_EMAIL=${{ secrets.MAILBOX_ORG_EMAIL }}" >> .env
+        echo "MAILBOX_ORG_PASSWORD=${{ secrets.MAILBOX_ORG_PASSWORD }}" >> .env
+        echo "MAILBOX_INBOX=${{ secrets.MAILBOX_INBOX }}" >> .env  
+    - name: Create test-data/user.json from GitHub secrets
+      run: |
+        mkdir -p test-data
+        echo '{ "email": "${{ secrets.TEST_EMAIL }}", "password": "${{ secrets.TEST_PASSWORD }}" }' > test-data/user.json
+    - name: 🧪 Run auth.setup.ts
+      run: npx playwright test tests/setup/auth.setup.ts
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
