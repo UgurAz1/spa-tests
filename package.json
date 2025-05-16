@@ -13,7 +13,16 @@
     "mySpa-ci": "npx playwright test --reporter=html --project=authenticated-chrome --project=no-auth-chrome",
     "mySpa-chrome": "npx playwright test --project=authenticated-chrome --project=no-auth-chrome",
     "mySpa-firefox": "npx playwright test --project=authenticated-firefox --project=no-auth-firefox",
-    "mySpa-all": "npm run mySpa-chrome && npm run mySpa-firefox"
+    "mySpa-all": "npm run mySpa-chrome && npm run mySpa-firefox",
+    "prepare": "husky install",
+    "verify": "npm run lint && npm run format:check && npm run typecheck",
+    "commit": "cz"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "repository": {
     "type": "git",
@@ -26,12 +35,18 @@
   },
   "homepage": "https://github.com/UgurAz1/spa-tests#readme",
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@faker-js/faker": "^9.7.0",
     "@playwright/test": "^1.51.1",
     "@types/node": "^22.14.0",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.26.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^16.0.0",
     "prettier": "^3.5.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
@@ -44,5 +59,10 @@
     "mailparser": "^3.7.2",
     "mailslurp-client": "^15.21.0",
     "pdf-parse": "^1.1.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
