@@ -32,6 +32,6 @@ jobs:
         run: npm run typecheck
 
       - name: Upload snapshots to Argos
-        run: npm exec -- argos upload --token=$ARGOS_TOKEN ./test-results
+        run: npm exec -- argos upload --token=$ARGOS_TOKEN ./test-results/ui-subcribe-to-newsletter-TC-S01-Subscribe-to-newsletter-authenticated-chrome/argos/authenticated-chrome
         env:
           ARGOS_TOKEN: ${{ secrets.ARGOS_TOKEN }}
