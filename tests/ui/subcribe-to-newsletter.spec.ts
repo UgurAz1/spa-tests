@@ -21,4 +21,5 @@ test("TC-S01: Subscribe to newsletter", async ({ page }) => {
     page1.getByText("You have successfully subscribed to the newsletter."),
   ).toBeVisible({ timeout: 6000 });
   await page1.screenshot({ path: "screenshots/newsletterConfirmation.png" });
+  await expect(page).toHaveScreenshot();
 });

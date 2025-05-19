@@ -19,8 +19,9 @@ export default defineConfig({
     locale: "en-US",
     headless: true,
     ignoreHTTPSErrors: true,
+    screenshot: "on",
   },
-
+  outputDir: "test-results/",
   projects: [
     {
       name: "setup",
