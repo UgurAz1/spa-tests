@@ -40,7 +40,9 @@ export default defineConfig({
       testIgnore: [
         "**/ui/login.spec.ts",
         "**/ui/register.spec.ts",
+        "**/ui/responsive-layout.spec.ts",
         "tests/api/**/*.spec.ts",
+        "tests/error/**/*.spec.ts",
       ],
       use: {
         ...devices["Desktop Chrome"],
@@ -53,7 +55,9 @@ export default defineConfig({
       testMatch: [
         "**/ui/login.spec.ts",
         "**/ui/register.spec.ts",
+        "**/ui/responsive-layout.spec.ts",
         "tests/api/**/*.spec.ts",
+        "tests/error/**/*.spec.ts",
       ],
       use: {
         ...devices["Desktop Chrome"],

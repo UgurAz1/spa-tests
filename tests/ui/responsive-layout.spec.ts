@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("Responsive layout", () => {
+test.describe("TC-RL001: Responsive layout", () => {
   test("Mobile viewport shows hamburger menu", async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto("/");
