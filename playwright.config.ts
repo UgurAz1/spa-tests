@@ -12,6 +12,14 @@ export default defineConfig({
     ["json", { outputFile: "test-results/jsonReport.json" }],
     ["junit", { outputFile: "test-results/junitReport.xml" }],
     ["html"],
+    // Add Argos reporter.
+    [
+      "@argos-ci/playwright/reporter",
+      {
+        // Upload to Argos on CI only.
+        uploadToArgos: !!process.env.CI,
+      },
+    ],
   ],
   use: {
     trace: "on-first-retry",
