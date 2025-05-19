@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { PageManager } from "../../pages/PageManager";
 import { UserHelper } from "../../utils/UserHelper";
+import { argosScreenshot } from "@argos-ci/playwright";
 
 test("TC-S01: Subscribe to newsletter", async ({ page }) => {
   const pages = new PageManager(page);
@@ -20,5 +21,5 @@ test("TC-S01: Subscribe to newsletter", async ({ page }) => {
   await expect(
     page1.getByText("You have successfully subscribed to the newsletter."),
   ).toBeVisible({ timeout: 6000 });
-  await expect(page1).toHaveScreenshot();
+  await argosScreenshot(page1, "newsletter confirmation");
 });

@@ -27,7 +27,7 @@ export default defineConfig({
     locale: "en-US",
     headless: true,
     ignoreHTTPSErrors: true,
-    screenshot: "on",
+    screenshot: "only-on-failure",
   },
   outputDir: "test-results/",
   projects: [
