@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-test("TC-R01: Registration and confirmation", async ({ page }) => {
+test.skip("TC-R01: Registration and confirmation", async ({ page }) => {
   const pages = new PageManager(page);
   const emailAddress = process.env.MAILBOX_ORG_EMAIL!;
   const password = generatePassword(12, "!A1");

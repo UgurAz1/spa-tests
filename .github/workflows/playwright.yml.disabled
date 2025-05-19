@@ -33,10 +33,10 @@ jobs:
         run: |
           mkdir -p test-data
           echo '{ "email": "${{ secrets.TEST_EMAIL }}", "password": "${{ secrets.TEST_PASSWORD }}" }' > test-data/user.json
-      # - name: 🧪 Run auth.setup.ts
-      #   run: npx playwright test tests/setup/auth.setup.ts
+      - name: 🧪 Run auth.setup.ts
+        run: npx playwright test tests/setup/auth.setup.ts
       - name: Run Playwright tests
-        run: "npx playwright test -g 'TC-R01: Registration and confirmation' --project=no-auth-chrome"
+        run: npm run mySpa-chrome
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
