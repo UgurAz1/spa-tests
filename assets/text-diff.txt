@@ -1,0 +1,59 @@
+  
+- MySpa Hannover · Stiegelmeyerstrasse 2 · 30519
+Hannover
+Uriel Trantow
+E 6th Street 40
+36159 Rippinfield
++ MySpa München · Maria-Probst-Str. 22 · 80939 München
+Ashlee Waelchi
+Green Mountains 55
+54617 Rosenbaumhaven
+  Germany
+- Mitgliedsnr:
+Model.Invoice.CustomerNumber
+Rechnungsnr.: 2025 68
+Rechnung 2025 68
++ Mitgliedsnr: Model.Invoice.CustomerNumber
+Rechnungsnr.: 2025 52
+Rechnung 2025 52
+  Leistungsdatum
+- 08.05.2025
++ 22.05.2025
+  Rechnungsdatum
+- 08.05.2025
++ 06.05.2025
+  Dankeschön. Danke für Dein Vertrauen in MySpa. Wir hoffen, dass unser Wellness-Erlebnis
+genau das auslöst, wofür MySpa steht: echte Entspannung und Erholung. Deine
+Rechnungssumme befindet sich untenstehend und anbei. Über eine Bewertung oder
+Empfehlung freuen wir uns natürlich immer!
+ProduktPreisMengeBesucheranzahl ¹Gesamtpreis
+- Exclusive MySpa Hannover 
+08.05.2025 12:45 (3 Stunden)
++ Exclusive MySpa München 
+22.05.2025 10:00 (2 Stunden)
+  1 Person
+- 0.00 €1.0010.00 €
+Zwischensumme (Netto)0.00 €
+Gesamtsumme (Brutto)0.00 €
++ 56.00 €1.00156.00 €
+Zwischensumme (Netto)56.00 €
+inkl. MwSt. 19%8.94 €
+Gesamtsumme (Brutto)56.00 €
+  ¹: Besucher in der Wellzone
+- MySpa KII Betriebsgesellschaft
++ MySpa Betriebsgesellschaft
+  mbH
+- Steuer-Nr: 99158/05517
+UST-ID: DE343533080
++ Steuer-Nr: 99158/05509
+UST-ID: DE318261691
+  Finanzamt Stuttgart
+Registergericht: Amtsgericht
+Stuttgart
+- Registernummer: HRB 782453
++ Registernummer: HRB 782180
+  Geschäftsführer
+Marvin Allotey,
+Daniel Krajewski
+und
+René Törner

@@ -12,6 +12,7 @@ export default defineConfig({
     ["json", { outputFile: "test-results/jsonReport.json" }],
     ["junit", { outputFile: "test-results/junitReport.xml" }],
     ["html"],
+    ["list"],
     // Add Argos reporter.
     [
       "@argos-ci/playwright/reporter",
@@ -43,6 +44,8 @@ export default defineConfig({
         "**/ui/responsive-layout.spec.ts",
         "tests/api/**/*.spec.ts",
         "tests/error/**/*.spec.ts",
+        // "tests/mocks/**/*.spec.ts",
+        "tests/pdf/**/*.spec.ts",
       ],
       use: {
         ...devices["Desktop Chrome"],
@@ -58,11 +61,18 @@ export default defineConfig({
         "**/ui/responsive-layout.spec.ts",
         "tests/api/**/*.spec.ts",
         "tests/error/**/*.spec.ts",
+        // "tests/mocks/**/*.spec.ts",
+        "tests/pdf/**/*.spec.ts",
       ],
       use: {
         ...devices["Desktop Chrome"],
       },
     },
+    {
+      name: "pdf",
+      testMatch: /tests\/pdf\/.*\.spec\.ts/,
+    },
+
     // {
     //   name: 'authenticated-firefox',
     //   testIgnore: [

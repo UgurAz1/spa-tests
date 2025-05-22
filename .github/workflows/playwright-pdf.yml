@@ -1,0 +1,38 @@
+name: Playwright PDF Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: # Manuell auslösbar
+
+jobs:
+  test-pdf:
+    name: Run PDF Tests (Playwright)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: 🧪 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 📥 Install Dependencies
+        run: npm ci
+
+      - name: 🎭 Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: 🧾 Run PDF-only tests
+        run: npm run test:pdf
+
+      - name: 📊 Upload Playwright Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-report
