@@ -40,6 +40,11 @@ jobs:
           Xvfb :99 & export DISPLAY=:99
           echo "DISPLAY=:99" >> $GITHUB_ENV
 
+      - name: Test pdftocairo raw
+        run: |
+          mkdir -p tmp/test
+          pdftocairo -png assets/Rechnung.pdf tmp/test/output
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
