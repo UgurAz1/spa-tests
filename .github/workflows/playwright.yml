@@ -23,7 +23,8 @@ jobs:
       - name: Check pdftocairo works
         run: |
           pdftocairo -v
-          pdftocairo -png assets/Rechnung.pdf check-output/test.png
+          mkdir -p check-output
+          pdftocairo -png assets/Rechnung.pdf check-output/test
 
       - name: Install xvfb (virtual display for pdftocairo safety)
         run: sudo apt-get install -y xvfb
