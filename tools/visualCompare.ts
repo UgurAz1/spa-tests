@@ -1,4 +1,3 @@
-const { convert } = require("pdf-poppler");
 import fs from "fs";
 import path from "path";
 import { PNG } from "pngjs";
@@ -21,6 +20,8 @@ const diffPath = path.join(outputDir, "diff.png");
 
 // convert PDF in PNG
 async function convertToPng(pdfPath: string, prefix: string) {
+  // @ts-ignore
+  const { convert } = await import("pdf-poppler");
   await convert(pdfPath, {
     format: "png",
     out_dir: outputDir,

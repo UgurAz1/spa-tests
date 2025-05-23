@@ -47,7 +47,8 @@ async function runSignatureTest(SHOULD_DRAW: boolean) {
   const tempPdfPath = path.join(tempDir, "Rechnung_signed.pdf");
   fs.writeFileSync(tempPdfPath, signedPdfBytes);
 
-  const { convert } = require("pdf-poppler");
+  // @ts-ignore
+  const { convert } = await import("pdf-poppler");
   async function renderPdfToPng(
     pdfPath: string,
     outDir: string,

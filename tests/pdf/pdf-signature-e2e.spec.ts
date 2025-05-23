@@ -58,7 +58,8 @@ test("TC-PDF-001-E2E - Complete process should succeed with signature in PDF - "
 
   fs.writeFileSync(tempPdfPath, signedPdfBytes);
 
-  const { convert } = require("pdf-poppler");
+  // @ts-ignore
+  const { convert } = await import("pdf-poppler");
 
   async function renderPdfToPng(
     pdfPath: string,
