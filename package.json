@@ -14,7 +14,7 @@
     "mySpa-chrome": "npx playwright test --project=authenticated-chrome --project=no-auth-chrome",
     "mySpa-firefox": "npx playwright test --project=authenticated-firefox --project=no-auth-firefox",
     "mySpa-all": "npm run mySpa-chrome && npm run mySpa-firefox",
-    "test:pdf": "npx playwright test --project=pdf",
+    "test:pdf": "npx playwright test --project=pdf --trace=on",
     "prepare": "husky install",
     "verify": "npm run lint && npm run format:check && npm run typecheck",
     "commit": "cz"
