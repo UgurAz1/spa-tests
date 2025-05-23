@@ -14,22 +14,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Install Poppler
-        run: sudo apt-get update && sudo apt-get install -y poppler-utils
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: lts/*
-
-      - name: Install Dependencies
+      - name: Lösche `node_modules` und `package-lock.json`
+        run: rm -rf node_modules package-lock.json
+      - name: Installiere alle Dependencies sauber neu
         run: npm install --legacy-peer-deps
-
+      - name: Install Webpack explizit
+        run: npm install webpack webpack-cli --save-dev --legacy-peer-deps
+      - name: Starte den Webserver für Playwright-Tests
+        run: npm start &
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps --force
+        run: npx playwright install --with-deps
 
       - name: Run PDF-only tests
         run: npm run test:pdf
