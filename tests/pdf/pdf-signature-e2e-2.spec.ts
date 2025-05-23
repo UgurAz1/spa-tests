@@ -136,18 +136,14 @@ async function runSignatureTest(SHOULD_DRAW: boolean) {
   expect(diffPixels - signedPixels).toBeLessThan(100);
 }
 
-test.describe("PDF Signature Test", () => {
+const isLinux = process.platform === "linux";
+
+(isLinux ? test.describe.skip : test.describe)("PDF Signature Test", () => {
   test("With signature", async () => {
-    if (process.platform === "linux") {
-      test.skip("Skipping on Linux CI – known issue with pdf-poppler.");
-    }
     await runSignatureTest(true);
   });
 
   test("Without signature", async () => {
-    if (process.platform === "linux") {
-      test.skip("Skipping on Linux CI – known issue with pdf-poppler.");
-    }
     await runSignatureTest(false);
   });
 });
