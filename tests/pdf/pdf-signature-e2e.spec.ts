@@ -4,7 +4,7 @@ import path from "path";
 import { PNG } from "pngjs";
 import pixelmatch from "pixelmatch";
 import { PDFDocument } from "pdf-lib";
-import { getTimestamp } from "../../helpers/timeHelpers";
+const { getTimestamp } = require("../../helpers/timeHelpers");
 
 test("TC-PDF-001-E2E - Complete process should succeed with signature in PDF - ", async () => {
   const timestamp = getTimestamp();
