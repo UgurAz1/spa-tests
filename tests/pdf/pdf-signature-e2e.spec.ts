@@ -66,12 +66,19 @@ test("TC-PDF-001-E2E - Complete process should succeed with signature in PDF - "
     outDir: string,
     outPrefix: string,
   ) {
-    await convert(pdfPath, {
-      format: "png",
-      out_dir: outDir,
-      out_prefix: outPrefix,
-      page: 1,
-    });
+    try {
+      console.log("🧪 calling convert() on", pdfPath);
+      await convert(pdfPath, {
+        format: "png",
+        out_dir: outDir,
+        out_prefix: outPrefix,
+        page: 1,
+      });
+      console.log("✅ convert() succeeded");
+    } catch (err) {
+      console.error("❌ convert() failed:", err);
+      throw err;
+    }
   }
 
   await renderPdfToPng(inputPdfPath, originalOutDir, "original");

@@ -22,12 +22,19 @@ const diffPath = path.join(outputDir, "diff.png");
 async function convertToPng(pdfPath: string, prefix: string) {
   // @ts-ignore
   const { convert } = await import("pdf-poppler");
-  await convert(pdfPath, {
-    format: "png",
-    out_dir: outputDir,
-    out_prefix: prefix,
-    page: 1,
-  });
+  try {
+    console.log("🧪 calling convert() on", pdfPath);
+    await convert(pdfPath, {
+      format: "png",
+      out_dir: outputDir,
+      out_prefix: prefix,
+      page: 1,
+    });
+    console.log("✅ convert() succeeded");
+  } catch (err) {
+    console.error("❌ convert() failed:", err);
+    throw err;
+  }
 }
 
 void (async () => {

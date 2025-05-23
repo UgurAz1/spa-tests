@@ -55,13 +55,19 @@ async function runSignatureTest(SHOULD_DRAW: boolean) {
     outDir: string,
     outPrefix: string,
   ) {
-    await convert(pdfPath, {
-      format: "png",
-      out_dir: outDir,
-      out_prefix: outPrefix,
-      page: 1,
-    });
-    console.log("🔧 convert() finished");
+    try {
+      console.log("🧪 calling convert() on", pdfPath);
+      await convert(pdfPath, {
+        format: "png",
+        out_dir: outDir,
+        out_prefix: outPrefix,
+        page: 1,
+      });
+      console.log("✅ convert() succeeded");
+    } catch (err) {
+      console.error("❌ convert() failed:", err);
+      throw err;
+    }
   }
 
   await renderPdfToPng(inputPdfPath, originalOutDir, "original");

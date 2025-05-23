@@ -9,7 +9,7 @@ on:
 
 jobs:
   test-pdf:
-    name: Run PDF Tests (Playwright)
+    name: Run PDF Tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -17,10 +17,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Poppler (Linux PDF conversion tool)
+      - name: Install Poppler
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
 
-      - name: Install xvfb
+      - name: Check pdftocairo works
+        run: |
+          pdftocairo -v
+          pdftocairo -png assets/Rechnung.pdf check-output/test.png
+
+      - name: Install xvfb (virtual display for pdftocairo safety)
         run: sudo apt-get install -y xvfb
 
       - name: Start virtual display
@@ -28,7 +33,7 @@ jobs:
           Xvfb :99 &
           echo "DISPLAY=:99" >> $GITHUB_ENV
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
@@ -36,17 +41,14 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Install Webpack (falls benötigt von deinem Build)
-        run: npm install webpack webpack-cli --save-dev --legacy-peer-deps
-
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run only PDF-related tests
+      - name: Run PDF tests
         run: npm run test:pdf
 
-      - name: Upload Playwright Report
-        if: ${{ always() }}
+      - name: Upload Playwright report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
