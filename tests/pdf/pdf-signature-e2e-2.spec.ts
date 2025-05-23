@@ -49,6 +49,7 @@ async function runSignatureTest(SHOULD_DRAW: boolean) {
 
   // @ts-ignore
   const { convert } = await import("pdf-poppler");
+  console.log("🔧 convert() imported OK");
   async function renderPdfToPng(
     pdfPath: string,
     outDir: string,
@@ -60,6 +61,7 @@ async function runSignatureTest(SHOULD_DRAW: boolean) {
       out_prefix: outPrefix,
       page: 1,
     });
+    console.log("🔧 convert() finished");
   }
 
   await renderPdfToPng(inputPdfPath, originalOutDir, "original");

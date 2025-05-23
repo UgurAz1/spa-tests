@@ -9,33 +9,44 @@ on:
 
 jobs:
   test-pdf:
-    timeout-minutes: 60
     name: Run PDF Tests (Playwright)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Install Poppler (Linux support)
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Poppler (Linux PDF conversion tool)
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
-      - uses: actions/setup-node@v4
+
+      - name: Optional: Install xvfb (virtual display, helps avoid convert() crashes)
+        run: sudo apt-get install -y xvfb
+
+      - name: Start virtual display
+        run: |
+          Xvfb :99 &
+          echo "DISPLAY=:99" >> $GITHUB_ENV
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
-      - name: Lösche `node_modules` und `package-lock.json`
-        run: rm -rf node_modules package-lock.json
-      - name: Installiere alle Dependencies sauber neu
+
+      - name: Install dependencies
         run: npm install --legacy-peer-deps
-      - name: Install Webpack explizit
+
+      - name: Install Webpack (falls benötigt von deinem Build)
         run: npm install webpack webpack-cli --save-dev --legacy-peer-deps
-      - name: Starte den Webserver für Playwright-Tests
-        run: npm start &
-      - name: Install Playwright Browsers
+
+      - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run PDF-only tests
+      - name: Run only PDF-related tests
         run: npm run test:pdf
 
       - name: Upload Playwright Report
-        if: ${{ !cancelled() }}
+        if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
