@@ -12,7 +12,7 @@ const outputDir = path.join(__dirname, "../assets/visual");
 function getGeneratedPng(prefix: string): string {
   const files = fs.readdirSync(outputDir);
   const match = files.find((f) => f.startsWith(prefix) && f.endsWith(".png"));
-  if (!match) throw new Error(`no PNG found for prefix "${prefix}"`);
+  if (!match) throw new Error(`No PNG found for prefix "${prefix}"`);
   return path.join(outputDir, match);
 }
 

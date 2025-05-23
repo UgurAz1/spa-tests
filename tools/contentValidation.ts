@@ -14,7 +14,7 @@ async function checkPdfContents() {
   const missing = requiredTexts.filter((t) => !text.includes(t));
 
   if (missing.length > 0) {
-    throw new Error(`❌ Missing content in the PDF: ${missing.join(", ")}`);
+    throw new Error(`Missing content in the PDF: ${missing.join(", ")}`);
   }
 
   console.log("PDF contains all mandatory content.");

@@ -26,7 +26,7 @@ export class PayPalHelper {
     });
 
     if (!res.ok())
-      throw new Error(`❌ Failed to get PayPal token: ${res.status()}`);
+      throw new Error(`Failed to get PayPal token: ${res.status()}`);
 
     const body = await res.json();
 
@@ -62,7 +62,7 @@ export class PayPalHelper {
     });
 
     if (!res.ok())
-      throw new Error(`❌ Failed to create PayPal order: ${res.status()}`);
+      throw new Error(`Failed to create PayPal order: ${res.status()}`);
 
     const data = await res.json();
 
