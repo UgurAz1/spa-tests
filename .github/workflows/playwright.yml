@@ -20,7 +20,7 @@ jobs:
       - name: Install Poppler (Linux PDF conversion tool)
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
 
-      - name: Optional: Install xvfb (virtual display, helps avoid convert() crashes)
+      - name: Install xvfb
         run: sudo apt-get install -y xvfb
 
       - name: Start virtual display
