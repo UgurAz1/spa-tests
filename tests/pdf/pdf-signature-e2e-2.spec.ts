@@ -4,7 +4,7 @@ import path from "path";
 import { PNG } from "pngjs";
 import pixelmatch from "pixelmatch";
 import { PDFDocument } from "pdf-lib";
-const { getTimestamp } = require("../../helpers/timeHelpers");
+import { getTimestamp } from "../../helpers/timeHelpers.js";
 
 // Helper function that performs the signature test
 async function runSignatureTest(SHOULD_DRAW: boolean) {

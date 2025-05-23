@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { PNG } from "pngjs";
 import pixelmatch from "pixelmatch";
-const { getTimestamp } = require("../../helpers/timeHelpers");
+import { getTimestamp } from "../../helpers/timeHelpers.js";
 
 test("Test invoice signed - visual difference detected", async () => {
   const originalPath = path.join(
