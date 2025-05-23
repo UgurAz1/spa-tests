@@ -20,6 +20,12 @@ jobs:
       - name: Install Poppler
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
 
+      - name: 🧪 Raw pdftocairo test (bypassing JS)
+        run: |
+          mkdir -p /tmp/pdf-test
+          pdftocairo -png assets/Rechnung.pdf /tmp/pdf-test/test
+          ls -la /tmp/pdf-test
+
       - name: Check pdftocairo works
         run: |
           pdftocairo -v
