@@ -79,7 +79,6 @@ async function runSignatureTest(SHOULD_DRAW: boolean) {
 
   const { width, height } = originalImg;
   const diff = new PNG({ width, height });
-  // diff.data.fill(0);
 
   const diffPixels = pixelmatch(
     originalImg.data,
