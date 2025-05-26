@@ -30,9 +30,6 @@ async function runSignatureTest(SHOULD_DRAW: boolean) {
   const pngImage = await pdfDoc.embedPng(imageBytes);
   const pages = pdfDoc.getPages();
   const firstPage = pages[0];
-  console.log(
-    `Page size: width=${firstPage.getWidth()}, height=${firstPage.getHeight()}`,
-  );
 
   if (SHOULD_DRAW) {
     firstPage.drawImage(pngImage, {
@@ -136,9 +133,7 @@ async function runSignatureTest(SHOULD_DRAW: boolean) {
   expect(diffPixels - signedPixels).toBeLessThan(100);
 }
 
-const isLinux = process.platform === "linux";
-
-(isLinux ? test.describe.skip : test.describe)("PDF Signature Test", () => {
+test.describe("PDF Signature Test", () => {
   test("With signature", async () => {
     await runSignatureTest(true);
   });
