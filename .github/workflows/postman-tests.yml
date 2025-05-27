@@ -1,0 +1,18 @@
+name: Postman Tests
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  run-postman:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Docker Compose
+        run: sudo apt-get install docker-compose -y
+
+      - name: Run Postman Tests
+        run: docker-compose run --rm postman-tests

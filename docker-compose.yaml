@@ -1,15 +1,20 @@
 services:
-  playwright-test:
-    image: playwright-test:v1.0.0
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  # playwright-test:
+  #   image: playwright-test:v1.0.0
+  #   build:
+  #     context: .
+  #     dockerfile: ./Dockerfile
+  #   volumes:
+  #     - ./test-data:/app/test-data
+  #     - ./playwright-report/:/app/playwright-report
+  #     - ./test-results/:/app/test-results
+  #     - ./.env:/app/.env
+  #   environment:
+  #     - DISPLAY=:99
+  #   command: sh -c "Xvfb :99 & npm run test:pdf:ci"
+  postman-tests:
+    image: postman/newman:alpine
+    container_name: postman-tests
     volumes:
-      - ./test-data:/app/test-data
-      - ./playwright-report/:/app/playwright-report
-      - ./test-results/:/app/test-results
-      - ./.env:/app/.env
-    environment:
-      - DISPLAY=:99
-    entrypoint: sh -c "Xvfb :99 & exec \"$@\""
-    command: npm run test:pdf
+      - ./postman:/etc/newman
+    command: run my_spa.postman_collection.json -e my_spa_Preview.postman_environment.json --insecure
