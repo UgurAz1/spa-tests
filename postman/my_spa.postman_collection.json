@@ -1,388 +1,328 @@
 {
-	"info": {
-		"_postman_id": "f1f4fbaa-93ad-4695-bcce-370ba35ec83e",
-		"name": "My Spa",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "28515454"
-	},
-	"item": [
-		{
-			"name": "stores",
-			"item": [
-				{
-					"name": "locations",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer"
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://preview-backend.myspa.me/api/v2/stores/for-website/all",
-							"protocol": "https",
-							"host": [
-								"preview-backend",
-								"myspa",
-								"me"
-							],
-							"path": [
-								"api",
-								"v2",
-								"stores",
-								"for-website",
-								"all"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "user",
-			"item": [
-				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"login successful - token saved\", () => {\r",
-									"  let data = pm.response.json();\r",
-									"  pm.expect(data.access).to.be.a(\"string\");\r",
-									"  pm.expect(data.refreshToken).to.be.a(\"string\");\r",
-									"  \r",
-									"  // tokens saved\r",
-									"  pm.environment.set(\"accessToken\", data.access);\r",
-									"  pm.environment.set(\"refreshToken\", data.refresh);\r",
-									"  pm.environment.set(\"expiration\", data.expiration);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{identifier: \"my-spa@mailbox.org\", password: \"bvmFlrZKTYnd!A1\"}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://preview-backend.myspa.me/api/v1/identity/login",
-							"protocol": "https",
-							"host": [
-								"preview-backend",
-								"myspa",
-								"me"
-							],
-							"path": [
-								"api",
-								"v1",
-								"identity",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "UserInfo",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{accessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://preview-backend.myspa.me/api/v1/identity/UserInfo",
-							"protocol": "https",
-							"host": [
-								"preview-backend",
-								"myspa",
-								"me"
-							],
-							"path": [
-								"api",
-								"v1",
-								"identity",
-								"UserInfo"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "order",
-			"item": [
-				{
-					"name": "create-order",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{accessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"cancelUrl\": \"https://preview-homepage.myspa.me/booking/success\",\r\n  \"orderId\": 37269,\r\n  \"paymentType\": 1,\r\n  \"returnUrl\": \"https://preview-homepage.myspa.me/booking/finalize?error=false\"\r\n}"
-						},
-						"url": {
-							"raw": "https://preview-backend.myspa.me/api/v2/payment/create-order",
-							"protocol": "https",
-							"host": [
-								"preview-backend",
-								"myspa",
-								"me"
-							],
-							"path": [
-								"api",
-								"v2",
-								"payment",
-								"create-order"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "book order",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{accessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"bookingEnd\": \"2025-10-08T11:30:00.000Z\",\r\n  \"bookingStart\": \"2025-10-08T08:30:00.000Z\",\r\n  \"productIdAmount\": {},\r\n  \"storeId\": 2,\r\n  \"visitorAmount\": 1,\r\n  \"wellzoneTypeId\": 2073\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://preview-backend.myspa.me/api/v2/order/Book",
-							"protocol": "https",
-							"host": [
-								"preview-backend",
-								"myspa",
-								"me"
-							],
-							"path": [
-								"api",
-								"v2",
-								"order",
-								"Book"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "all for user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"let response = pm.response.json();\r",
-									"\r",
-									"pm.test(\"status code is 200\", () => {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"totalCount is present and greater than 0\", () => {\r",
-									"    pm.expect(response.totalCount).to.be.a(\"number\");\r",
-									"    pm.expect(response.totalCount).to.be.above(0);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"items is an array\", () => {\r",
-									"    pm.expect(response.items).to.be.an(\"array\");\r",
-									"    pm.expect(response.items.length).to.be.above(0);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Each item has all expected fields\", () => {\r",
-									"    response.items.forEach(item => {\r",
-									"        pm.expect(item).to.have.property(\"id\");\r",
-									"        pm.expect(item).to.have.property(\"referenceNumber\");\r",
-									"        pm.expect(item).to.have.property(\"orderStatus\");\r",
-									"        pm.expect(item.orderStatus).to.have.property(\"id\");\r",
-									"        pm.expect(item.orderStatus).to.have.property(\"name\");\r",
-									"\r",
-									"        pm.expect(item).to.have.property(\"store\");\r",
-									"        pm.expect(item.store).to.have.property(\"id\");\r",
-									"        pm.expect(item.store).to.have.property(\"name\");\r",
-									"\r",
-									"        pm.expect(item).to.have.property(\"totalAmount\");\r",
-									"        pm.expect(item.totalAmount).to.be.a(\"number\");\r",
-									"\r",
-									"        pm.expect(item).to.have.property(\"orderedAtDateTime\");\r",
-									"        pm.expect(item).to.have.property(\"orderType\");\r",
-									"    });\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{accessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://preview-backend.myspa.me/api/v2/order/ForUser/all?Offset=0&Count=5&sortAscending=false",
-							"protocol": "https",
-							"host": [
-								"preview-backend",
-								"myspa",
-								"me"
-							],
-							"path": [
-								"api",
-								"v2",
-								"order",
-								"ForUser",
-								"all"
-							],
-							"query": [
-								{
-									"key": "Offset",
-									"value": "0"
-								},
-								{
-									"key": "Count",
-									"value": "5"
-								},
-								{
-									"key": "sortAscending",
-									"value": "false"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "booking-order-info-by-id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{accessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://preview-backend.myspa.me/api/v2/order/37272/booking-order-info-by-id",
-							"protocol": "https",
-							"host": [
-								"preview-backend",
-								"myspa",
-								"me"
-							],
-							"path": [
-								"api",
-								"v2",
-								"order",
-								"37272",
-								"booking-order-info-by-id"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	]
+  "info": {
+    "_postman_id": "f1f4fbaa-93ad-4695-bcce-370ba35ec83e",
+    "name": "My Spa",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28515454"
+  },
+  "item": [
+    {
+      "name": "stores",
+      "item": [
+        {
+          "name": "locations",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://preview-backend.myspa.me/api/v2/stores/for-website/all",
+              "protocol": "https",
+              "host": ["preview-backend", "myspa", "me"],
+              "path": ["api", "v2", "stores", "for-website", "all"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"login successful - token saved\", () => {\r",
+                  "  let data = pm.response.json();\r",
+                  "  pm.expect(data.access).to.be.a(\"string\");\r",
+                  "  pm.expect(data.refreshToken).to.be.a(\"string\");\r",
+                  "  \r",
+                  "  // tokens saved\r",
+                  "  pm.environment.set(\"accessToken\", data.access);\r",
+                  "  pm.environment.set(\"refreshToken\", data.refresh);\r",
+                  "  pm.environment.set(\"expiration\", data.expiration);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{identifier: \"my-spa@mailbox.org\", password: \"bvmFlrZKTYnd!A1\"}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://preview-backend.myspa.me/api/v1/identity/login",
+              "protocol": "https",
+              "host": ["preview-backend", "myspa", "me"],
+              "path": ["api", "v1", "identity", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UserInfo",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://preview-backend.myspa.me/api/v1/identity/UserInfo",
+              "protocol": "https",
+              "host": ["preview-backend", "myspa", "me"],
+              "path": ["api", "v1", "identity", "UserInfo"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "order",
+      "item": [
+        {
+          "name": "create-order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cancelUrl\": \"https://preview-homepage.myspa.me/booking/success\",\r\n  \"orderId\": 37269,\r\n  \"paymentType\": 1,\r\n  \"returnUrl\": \"https://preview-homepage.myspa.me/booking/finalize?error=false\"\r\n}"
+            },
+            "url": {
+              "raw": "https://preview-backend.myspa.me/api/v2/payment/create-order",
+              "protocol": "https",
+              "host": ["preview-backend", "myspa", "me"],
+              "path": ["api", "v2", "payment", "create-order"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "book order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"bookingEnd\": \"2025-10-08T11:30:00.000Z\",\r\n  \"bookingStart\": \"2025-10-08T08:30:00.000Z\",\r\n  \"productIdAmount\": {},\r\n  \"storeId\": 2,\r\n  \"visitorAmount\": 1,\r\n  \"wellzoneTypeId\": 2073\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://preview-backend.myspa.me/api/v2/order/Book",
+              "protocol": "https",
+              "host": ["preview-backend", "myspa", "me"],
+              "path": ["api", "v2", "order", "Book"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "all for user",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"status code is 200\", () => {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"totalCount is present and greater than 0\", () => {\r",
+                  "    pm.expect(response.totalCount).to.be.a(\"number\");\r",
+                  "    pm.expect(response.totalCount).to.be.above(0);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"items is an array\", () => {\r",
+                  "    pm.expect(response.items).to.be.an(\"array\");\r",
+                  "    pm.expect(response.items.length).to.be.above(0);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Each item has all expected fields\", () => {\r",
+                  "    response.items.forEach(item => {\r",
+                  "        pm.expect(item).to.have.property(\"id\");\r",
+                  "        pm.expect(item).to.have.property(\"referenceNumber\");\r",
+                  "        pm.expect(item).to.have.property(\"orderStatus\");\r",
+                  "        pm.expect(item.orderStatus).to.have.property(\"id\");\r",
+                  "        pm.expect(item.orderStatus).to.have.property(\"name\");\r",
+                  "\r",
+                  "        pm.expect(item).to.have.property(\"store\");\r",
+                  "        pm.expect(item.store).to.have.property(\"id\");\r",
+                  "        pm.expect(item.store).to.have.property(\"name\");\r",
+                  "\r",
+                  "        pm.expect(item).to.have.property(\"totalAmount\");\r",
+                  "        pm.expect(item.totalAmount).to.be.a(\"number\");\r",
+                  "\r",
+                  "        pm.expect(item).to.have.property(\"orderedAtDateTime\");\r",
+                  "        pm.expect(item).to.have.property(\"orderType\");\r",
+                  "    });\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://preview-backend.myspa.me/api/v2/order/ForUser/all?Offset=0&Count=5&sortAscending=false",
+              "protocol": "https",
+              "host": ["preview-backend", "myspa", "me"],
+              "path": ["api", "v2", "order", "ForUser", "all"],
+              "query": [
+                {
+                  "key": "Offset",
+                  "value": "0"
+                },
+                {
+                  "key": "Count",
+                  "value": "5"
+                },
+                {
+                  "key": "sortAscending",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "booking-order-info-by-id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://preview-backend.myspa.me/api/v2/order/37272/booking-order-info-by-id",
+              "protocol": "https",
+              "host": ["preview-backend", "myspa", "me"],
+              "path": [
+                "api",
+                "v2",
+                "order",
+                "37272",
+                "booking-order-info-by-id"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
 }
