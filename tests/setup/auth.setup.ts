@@ -2,8 +2,6 @@ import { test as setup, chromium } from "@playwright/test";
 import { UserHelper } from "../../utils/UserHelper";
 import { PageManager } from "../../pages/PageManager";
 import fs from "fs";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 const storageStatePath = ".auth/state.json";
 
@@ -12,7 +10,7 @@ setup("Login and save storage state", async ({ page, context }) => {
   const pages = new PageManager(page);
   const header = pages.header;
 
-  await page.goto(`${process.env.BASE_URL}/login`);
+  await page.goto("/login");
 
   await header.languageSwitcher.selectLanguage("English");
   await header.accountManager.goToLogin();
