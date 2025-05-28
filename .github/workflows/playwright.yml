@@ -32,6 +32,7 @@ jobs:
       - name: Create test-data/user.json from GitHub secrets
         shell: powershell
         run: |
+          New-Item -ItemType Directory -Force -Path "test-data"
           $email = "${{ secrets.TEST_EMAIL }}"
           $password = "${{ secrets.TEST_PASSWORD }}"
           $json = @{
