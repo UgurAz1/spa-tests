@@ -39,7 +39,8 @@ jobs:
             email = $email
             password = $password
           } | ConvertTo-Json -Depth 2
-          [System.IO.File]::WriteAllText("test-data/user.json", $json, [System.Text.Encoding]::UTF8)
+          $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+          [System.IO.File]::WriteAllText("test-data/user.json", $json, $utf8NoBom)
 
       - name: 🧪 Run auth.setup.ts
         run: npx playwright test tests/setup/auth.setup.ts
