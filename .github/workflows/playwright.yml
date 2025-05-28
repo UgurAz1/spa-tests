@@ -30,7 +30,7 @@ jobs:
           echo "MAILBOX_ORG_PASSWORD=${{ secrets.MAILBOX_ORG_PASSWORD }}" >> .env
           echo "MAILBOX_INBOX=${{ secrets.MAILBOX_INBOX }}" >> .env
       - name: Create test-data/user.json from GitHub secrets
-        shell: pwsh
+        shell: powershell
         run: |
           $email = "${{ secrets.TEST_EMAIL }}"
           $password = "${{ secrets.TEST_PASSWORD }}"
