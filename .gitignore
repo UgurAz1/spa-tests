@@ -7,3 +7,4 @@ node_modules/
 test-data/
 .env
 postman/*
+actions-runner/
