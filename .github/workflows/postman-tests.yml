@@ -9,10 +9,8 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Install Docker Compose
-        run: sudo apt-get install docker-compose -y
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
       - name: Run Postman Tests
         run: docker-compose run --rm postman-tests
