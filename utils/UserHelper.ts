@@ -13,7 +13,10 @@ export class UserHelper {
   }
 
   static load(): TestUser {
-    const raw = fs.readFileSync(authFile, "utf-8");
+    const raw = fs
+      .readFileSync(authFile, "utf-8")
+      .replace(/^\uFEFF/, "")
+      .trim();
     console.log(
       "🔎 FIRST BYTES:",
       Buffer.from(raw).toString("hex").slice(0, 12),
