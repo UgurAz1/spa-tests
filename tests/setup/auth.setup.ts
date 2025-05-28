@@ -14,7 +14,7 @@ setup("Login and save storage state", async ({}) => {
   const pages = new PageManager(page);
   const header = pages.header;
 
-  await page.goto("/login");
+  await page.goto(`${process.env.BASE_URL}/login`);
 
   await header.languageSwitcher.selectLanguage("English");
   await header.accountManager.goToLogin();
