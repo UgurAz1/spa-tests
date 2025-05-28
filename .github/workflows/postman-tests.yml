@@ -12,5 +12,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Debug files
+        run: |
+          echo "Working dir: $(pwd)"
+          ls -la
+          echo "Postman-Ordner Inhalt:"
+          ls -la postman
+
       - name: Run Postman Tests
         run: docker-compose run --rm postman-tests
