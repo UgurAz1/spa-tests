@@ -6,6 +6,9 @@ import pluginTs from "@typescript-eslint/eslint-plugin";
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
   {
+    ignores: ["**/actions-runner/**", "node_modules/**"],
+  },
+  {
     files: ["**/*.ts"],
     languageOptions: {
       parser: parserTs,
