@@ -16,5 +16,5 @@ services:
     image: postman/newman:alpine
     container_name: postman-tests
     volumes:
-      - ${GITHUB_WORKSPACE}/postman:/etc/newman
+      - ${GITHUB_WORKSPACE:-.}/postman:/etc/newman
     command: run my_spa.postman_collection.json -e my_spa_Preview.postman_environment.json --insecure
