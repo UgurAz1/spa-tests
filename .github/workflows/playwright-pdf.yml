@@ -19,10 +19,12 @@ jobs:
       - name: Run PDF tests inside Docker container
         run: |
           docker build -t playwright-test:v1 .
-          docker run --rm \
-            -v ${{ github.workspace }}/playwright-report:/app/playwright-report \
-            -v ${{ github.workspace }}/test-results:/app/test-results \
-            playwright-test:v1 npm run test:pdf:ci
+          docker run --rm ^
+           -v "${{ github.workspace }}/playwright-report:/app/playwright-report" ^
+           -v "${{ github.workspace }}/test-results:/app/test-results" ^
+           -e NODE_TLS_REJECT_UNAUTHORIZED=0 ^
+           playwright-test:v1 npm run test:pdf:ci
+          shell: powershell
 
       - name: Upload Playwright report
         if: always()
