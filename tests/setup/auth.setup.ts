@@ -2,6 +2,8 @@ import { test as setup, chromium } from "@playwright/test";
 import { UserHelper } from "../../utils/UserHelper";
 import { PageManager } from "../../pages/PageManager";
 import fs from "fs";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const storageStatePath = ".auth/state.json";
 
