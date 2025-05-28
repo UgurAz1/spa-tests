@@ -32,7 +32,10 @@ jobs:
       - name: Create test-data/user.json from GitHub secrets
         run: |
           mkdir -p test-data
-          echo '{ "email": "${{ secrets.TEST_EMAIL }}", "password": "${{ secrets.TEST_PASSWORD }}" }' > test-data/user.json
+          jq -n \
+           --arg email "${{ secrets.TEST_EMAIL }}" \
+           --arg password "${{ secrets.TEST_PASSWORD }}" \
+          '{ email: $email, password: $password }' > test-data/user.json
       - name: 🧪 Run auth.setup.ts
         run: npx playwright test tests/setup/auth.setup.ts
       - name: Run Playwright tests
