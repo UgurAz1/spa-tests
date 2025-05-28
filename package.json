@@ -4,8 +4,8 @@
   "description": "Playwright tests for SPA",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "lint": "eslint tests/ tools/ utils/ pages/ helpers/ --ext .ts,.tsx",
+    "lint:fix": "eslint tests/ tools/ utils/ pages/ helpers/ --ext .ts,.tsx --fix",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "typecheck": "tsc --noEmit",
