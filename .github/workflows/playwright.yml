@@ -30,12 +30,15 @@ jobs:
           echo "MAILBOX_ORG_PASSWORD=${{ secrets.MAILBOX_ORG_PASSWORD }}" >> .env
           echo "MAILBOX_INBOX=${{ secrets.MAILBOX_INBOX }}" >> .env
       - name: Create test-data/user.json from GitHub secrets
+        shell: pwsh
         run: |
-          mkdir -p test-data
-          jq -n \
-           --arg email "${{ secrets.TEST_EMAIL }}" \
-           --arg password "${{ secrets.TEST_PASSWORD }}" \
-          '{ email: $email, password: $password }' > test-data/user.json
+          $email = "${{ secrets.TEST_EMAIL }}"
+          $password = "${{ secrets.TEST_PASSWORD }}"
+          $json = @{
+            email = $email
+            password = $password
+          } | ConvertTo-Json -Depth 2
+          $json | Out-File -Encoding utf8 test-data/user.json
       - name: 🧪 Run auth.setup.ts
         run: npx playwright test tests/setup/auth.setup.ts
       - name: Run Playwright tests
