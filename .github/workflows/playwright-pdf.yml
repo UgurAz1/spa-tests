@@ -24,7 +24,7 @@ jobs:
            -v "${{ github.workspace }}/test-results:/app/test-results" ^
            -e NODE_TLS_REJECT_UNAUTHORIZED=0 ^
            playwright-test:v1 npm run test:pdf:ci
-          shell: powershell
+        shell: powershell
 
       - name: Upload Playwright report
         if: always()

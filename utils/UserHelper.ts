@@ -13,7 +13,7 @@ export class UserHelper {
   }
 
   static load(): TestUser {
-    const raw = fs.readFileSync(authFile, "utf-8");
+    const raw = fs.readFileSync(authFile, "utf-8").replace(/^\uFEFF/, "");
     return JSON.parse(raw);
   }
 
