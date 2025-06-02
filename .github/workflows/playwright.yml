@@ -42,8 +42,6 @@ jobs:
           $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
           [System.IO.File]::WriteAllText("test-data/user.json", $json, $utf8NoBom)
 
-      # - name: Show .env file
-      #   run: cat .env
       - name: Check if BASE_URL is set
         shell: powershell
         run: |
