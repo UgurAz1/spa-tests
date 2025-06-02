@@ -21,6 +21,11 @@ setup("Login and save storage state", async ({ page, context }) => {
       console.log(" /UserInfo Response:", response.status(), response.url());
     }
   });
+  page.on("request", (request) => {
+    if (request.url().includes("/UserInfo")) {
+      console.log("➡️ Request to /UserInfo:", request.method(), request.url());
+    }
+  });
 
   const userInfoResponse = await page
     .waitForResponse(
