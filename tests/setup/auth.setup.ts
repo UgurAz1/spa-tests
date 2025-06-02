@@ -14,6 +14,7 @@ setup("Login and save storage state", async ({ page, context }) => {
 
   await header.languageSwitcher.selectLanguage("English");
   await header.accountManager.goToLogin();
+  await page.waitForTimeout(5000);
   await header.accountManager.login.login(user.email, user.password);
   await page.screenshot({ path: "debug-after-login.png", fullPage: true });
 
