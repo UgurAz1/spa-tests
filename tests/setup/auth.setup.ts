@@ -15,10 +15,11 @@ setup("Login and save storage state", async ({ page, context }) => {
   await header.languageSwitcher.selectLanguage("English");
   await header.accountManager.goToLogin();
   await header.accountManager.login.login(user.email, user.password);
+  await page.screenshot({ path: "debug-after-login.png", fullPage: true });
 
   page.on("request", (request) => {
     if (request.url().includes("/UserInfo")) {
-      console.log("➡️ Request to /UserInfo:", request.method(), request.url());
+      console.log("Request to /UserInfo:", request.method(), request.url());
     }
   });
 
@@ -35,7 +36,7 @@ setup("Login and save storage state", async ({ page, context }) => {
     )
     .catch(() => {
       console.warn(
-        "⚠️ /UserInfo wurde nicht empfangen oder hatte nicht Status 200",
+        " /UserInfo wurde nicht empfangen oder hatte nicht Status 200",
       );
       return null;
     });
@@ -53,13 +54,13 @@ setup("Login and save storage state", async ({ page, context }) => {
   if (userInfoResponse) {
     const userInfo = await userInfoResponse.json();
     fs.writeFileSync(".auth/userInfo.json", JSON.stringify(userInfo, null, 2));
-    console.log("✅ userInfo.json gespeichert");
+    console.log("userInfo.json gespeichert");
   } else {
     fs.writeFileSync(
       ".auth/userInfo.json",
       JSON.stringify({ error: "not received" }, null, 2),
     );
-    console.warn("⚠️ userInfo.json mit Fehlermeldung gespeichert");
+    console.warn("userInfo.json mit Fehlermeldung gespeichert");
   }
 
   await context.storageState({ path: storageStatePath });

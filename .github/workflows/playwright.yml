@@ -67,6 +67,11 @@ jobs:
       #   env:
       #     ARGOS_TOKEN: ${{ secrets.ARGOS_TOKEN }}
       - uses: actions/upload-artifact@v4
+        with:
+          name: login-screenshot
+          path: debug-after-login.png
+
+      - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
