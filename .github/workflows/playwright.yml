@@ -44,8 +44,16 @@ jobs:
 
       # - name: Show .env file
       #   run: cat .env
-      - name: Run env debug test
-        run: npx playwright test tests/setup/env-debug.spec.ts
+      - name: Check if BASE_URL is set
+        shell: powershell
+        run: |
+          $val = "${{ secrets.BASE_URL }}"
+          if ($val) {
+           Write-Host "::notice::BASE_URL starts with: $($val.Substring(0,15))..."
+          } else {
+           Write-Error "❌ BASE_URL is missing"
+          exit 1
+          }
       - name: 🧪 Run auth.setup.ts
         run: npx playwright test tests/setup/auth.setup.ts
       # - name: Run Playwright tests
