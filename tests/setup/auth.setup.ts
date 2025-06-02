@@ -8,6 +8,7 @@ setup("Login and save storage state", async ({ page, context }) => {
   const user = UserHelper.load();
   const pages = new PageManager(page);
   const header = pages.header;
+  fs.mkdirSync(".auth", { recursive: true });
 
   await page.goto("/login");
 
