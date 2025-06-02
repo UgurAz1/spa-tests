@@ -12,6 +12,8 @@ setup("Login and save storage state", async ({ page, context }) => {
   const pages = new PageManager(page);
   const header = pages.header;
   console.log("BASE_URL:", process.env.BASE_URL);
+  console.log("DEBUG BASE_URL =", JSON.stringify(process.env.BASE_URL));
+
   console.log(
     "Seite wird aufgerufen:",
     new URL("/login", process.env.BASE_URL).toString(),
