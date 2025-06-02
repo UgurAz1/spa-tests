@@ -16,14 +16,15 @@ setup("Login and save storage state", async ({ page, context }) => {
   await header.accountManager.goToLogin();
   await header.accountManager.login.login(user.email, user.password);
 
-  page.on("response", (response) => {
-    if (response.url().includes("/UserInfo")) {
-      console.log(" /UserInfo Response:", response.status(), response.url());
-    }
-  });
   page.on("request", (request) => {
     if (request.url().includes("/UserInfo")) {
       console.log("➡️ Request to /UserInfo:", request.method(), request.url());
+    }
+  });
+
+  page.on("response", (response) => {
+    if (response.url().includes("/UserInfo")) {
+      console.log(" /UserInfo Response:", response.status(), response.url());
     }
   });
 
