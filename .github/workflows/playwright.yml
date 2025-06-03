@@ -42,10 +42,17 @@ jobs:
           $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
           [System.IO.File]::WriteAllText("test-data/user.json", $json, $utf8NoBom)
 
-      - name: Check if BASE_URL is set
+      - name: Check if BASE_URL and BACKEND_URL are set
         shell: powershell
         run: |
           $val = "${{ secrets.BASE_URL }}"
+          $val_backend = "${{ secrets.BASE_URL_BACKEND }}"
+          if ($val_backend) {
+           Write-Host "::notice::BASE_URL_BACKEND starts with: $($val_backend.Substring(0,25))..."
+          } else {
+           Write-Error "❌ BASE_URL_BACKEND is missing"
+          exit 1
+          }
           if ($val) {
            Write-Host "::notice::BASE_URL starts with: $($val.Substring(0,15))..."
           } else {
