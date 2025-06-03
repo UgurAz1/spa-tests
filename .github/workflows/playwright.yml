@@ -69,12 +69,12 @@ jobs:
         shell: powershell
         run: npm run mySpa-chrome
         env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          BASE_URL_BACKEND: ${{ secrets.BASE_URL_BACKEND }}
           NODE_TLS_REJECT_UNAUTHORIZED: 0
       - name: Upload snapshots to Argos
         run: npm exec -- argos upload --token=$ARGOS_TOKEN ./test-results/ui-subcribe-to-newsletter-TC-S01-Subscribe-to-newsletter-authenticated-chrome-argos-authenticated-chrome
         env:
-          BASE_URL: ${{ secrets.BASE_URL }}
-          BASE_URL_BACKEND: ${{ secrets.BASE_URL_BACKEND }}
           ARGOS_TOKEN: ${{ secrets.ARGOS_TOKEN }}
       - name: Upload debug screenshot
         if: always()
