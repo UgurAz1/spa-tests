@@ -16,7 +16,7 @@ setup("Login and save storage state", async ({ page, context }) => {
   await header.acceptCookiesIfVisible();
   await header.accountManager.goToLogin();
   await header.accountManager.login.login(user.email, user.password);
-  await page.waitForTimeout(5000);
+  await page.waitForTimeout(6000);
   await page.screenshot({ path: "debug-after-login.png", fullPage: true });
 
   page.on("request", (request) => {
