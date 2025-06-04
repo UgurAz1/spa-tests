@@ -17,7 +17,7 @@ setup("Login and save storage state", async ({ page, context }) => {
   await header.accountManager.goToLogin();
   await header.accountManager.login.login(user.email, user.password);
   await page.waitForTimeout(6000);
-  await page.screenshot({ path: "debug-after-login.png", fullPage: true });
+  await page.screenshot({ path: "debug-after-login2.png", fullPage: true });
 
   page.on("request", (request) => {
     if (request.url().includes("/UserInfo")) {
