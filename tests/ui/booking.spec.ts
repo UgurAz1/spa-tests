@@ -18,7 +18,7 @@ test("TC-B01: Booking selection with required information and submit", async ({
 
   await page.goto("/");
 
-  await pages.booking.selectFiliale(location);
+  await pages.booking.selectLocation(location);
   await pages.booking.setCheckinDateFromToday(checkinOffsetInDays);
   await pages.booking.selectPersons(visitors);
   await pages.booking.selectDuration(durationInHours);

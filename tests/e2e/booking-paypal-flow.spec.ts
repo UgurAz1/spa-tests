@@ -8,7 +8,7 @@ test("TC-E2E: Complete booking flow with PayPal payment", async ({ page }) => {
 
   await pages.acceptCookiesIfVisible();
   await pages.headerNavigation.goToStores();
-  await pages.booking.selectFiliale("München");
+  await pages.booking.selectLocation("München");
   await pages.booking.setCheckinDateFromToday(16);
   await pages.booking.selectPersons(1);
   await pages.booking.selectDuration(2);

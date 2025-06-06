@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export class BookingManager extends BasePage {
-  readonly filialSelector: Locator;
+  readonly locationSelector: Locator;
   readonly checkinSelector: Locator;
   readonly personsSelector: Locator;
   readonly durationSelector: Locator;
@@ -17,15 +17,15 @@ export class BookingManager extends BasePage {
     const bookingContainer = page.locator("#bannerContainer");
 
     this.stepContainer = this.page.locator(".stepSelection");
-    this.filialSelector = bookingContainer.getByText("Location");
+    this.locationSelector = bookingContainer.getByText("Location");
     this.checkinSelector = bookingContainer.getByText("Check-in");
     this.personsSelector = bookingContainer.getByText("Who");
     this.durationSelector = bookingContainer.getByText("Duration");
     this.submitButton = bookingContainer.getByRole("button", { name: "Book" });
   }
 
-  async selectFiliale(name: string) {
-    await this.filialSelector.click();
+  async selectLocation(name: string) {
+    await this.locationSelector.click();
 
     const locationContent = this.page
       .locator("#step-0 .flex.flex-col.text-myspa-blue")
