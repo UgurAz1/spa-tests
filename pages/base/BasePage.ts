@@ -23,7 +23,6 @@ export class BasePage {
     await locator.scrollIntoViewIfNeeded();
   }
 
-  // todo: decline/configure
   async acceptCookiesIfVisible() {
     const cookieButton = this.page.getByRole("button", {
       name: "Necessary only",
@@ -37,7 +36,8 @@ export class BasePage {
     const newsletterBanner = this.page.locator(
       ".bg-white > div:nth-child(2) > div > .border-myspa-blue",
     );
-    await newsletterBanner.click();
+    const banner = await newsletterBanner.click();
+
     await this.page
       .getByRole("textbox", { name: "E-Mail address *" })
       .fill(email);

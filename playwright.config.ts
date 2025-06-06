@@ -10,17 +10,21 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [
     ["json", { outputFile: "test-results/jsonReport.json" }],
-    ["junit", { outputFile: "test-results/junitReport.xml" }],
-    ["html"],
-    ["list"],
-    // Add Argos reporter.
     [
-      "@argos-ci/playwright/reporter",
+      "html",
       {
-        // Upload to Argos on CI only.
-        uploadToArgos: !!process.env.CI,
+        open: "always",
       },
     ],
+    ["list"],
+    // // Add Argos reporter.
+    // [
+    //   "@argos-ci/playwright/reporter",
+    //   {
+    //     // Upload to Argos on CI only.
+    //     uploadToArgos: !!process.env.CI,
+    //   },
+    // ],
   ],
   use: {
     trace: "on-first-retry",
