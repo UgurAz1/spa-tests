@@ -12,9 +12,9 @@ export default defineConfig({
     ["json", { outputFile: "test-results/jsonReport.json" }],
     [
       "html",
-      {
-        open: "always",
-      },
+      // {
+      //   open: "always",
+      // },
     ],
     ["list"],
     // // Add Argos reporter.
@@ -33,6 +33,9 @@ export default defineConfig({
     headless: true,
     ignoreHTTPSErrors: true,
     screenshot: "only-on-failure",
+    // launchOptions: {
+    //   slowMo: 1000
+    // }
   },
   outputDir: "test-results/",
   projects: [

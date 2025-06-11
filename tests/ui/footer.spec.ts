@@ -70,7 +70,9 @@ test.describe("Test footer section", () => {
     test("TC-FLL02: Navigate to privacy", async ({ pages }) => {
       await pages.footerLegalLinks.goToPrivacyLink();
       await pages.expectUrl("datenschutz");
-      await expect(pages.currentPage.getByText("Privacy")).toBeVisible();
+      await expect(
+        pages.currentPage.locator("span.text-5xl.font-toledo-wider"),
+      ).toHaveText("Privacy");
     });
 
     test("TC-FLL03: Navigate to disclaimer", async ({ pages }) => {
@@ -95,19 +97,29 @@ test.describe("Test footer section", () => {
   });
 
   test.describe("Social Links", () => {
-    test("TC-FSL01: Navigate to Instagram", async ({ pages }) => {
-      await pages.footerSocialLinks.gotToInstagram();
-      await pages.expectUrl("instagram");
+    test("TC-FSL01: Navigate to Instagram", async ({ context, pages }) => {
+      const [instagramPage] = await Promise.all([
+        context.waitForEvent("page"),
+        pages.footerSocialLinks.gotToInstagram(),
+      ]);
+      await expect(instagramPage).toHaveURL(/instagram/);
     });
 
-    test("TC-FSL02: Navigate to TikTok", async ({ pages }) => {
-      await pages.footerSocialLinks.goToTikTok();
-      await pages.expectUrl("tiktok");
+    test("TC-FSL02: Navigate to TikTok", async ({ context, pages }) => {
+      const [tikTokPage] = await Promise.all([
+        context.waitForEvent("page"),
+        pages.footerSocialLinks.goToTikTok(),
+      ]);
+      await expect(tikTokPage).toHaveURL(/tiktok/);
     });
 
-    test("TC-FSL03: Navigate to Facebook", async ({ pages }) => {
-      await pages.footerSocialLinks.goToFacebook();
-      await pages.expectUrl("facebook");
+    test("TC-FSL03: Navigate to Facebook", async ({ context, pages }) => {
+      const [facebookPage] = await Promise.all([
+        context.waitForEvent("page"),
+        pages.footerSocialLinks.goToFacebook(),
+      ]);
+
+      await expect(facebookPage).toHaveURL(/facebook/);
     });
   });
 });

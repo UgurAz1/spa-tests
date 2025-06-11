@@ -1,12 +1,12 @@
 import { test, expect } from "../fixtures/pageObjectFixtures";
 
-test.describe("Test footer section", () => {
+test.describe("Test header section", () => {
   test.beforeEach(async ({ page, pages }) => {
     await page.goto("/");
     await pages.acceptCookiesIfVisible();
   });
 
-  test("TC-N01: Navigate to Filialen", async ({ pages }) => {
+  test("TC-N01: Navigate to Stores", async ({ pages }) => {
     await pages.headerNavigation.goToStores();
     await pages.expectUrl("locations");
     await expect(pages.currentPage.locator("h1")).toContainText("Filialen");

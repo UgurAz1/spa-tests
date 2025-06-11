@@ -31,13 +31,11 @@ setup("Login and save storage state", async ({ page, pages, context }) => {
   if (userInfoResponse) {
     const userInfo = await userInfoResponse.json();
     fs.writeFileSync(".auth/userInfo.json", JSON.stringify(userInfo, null, 2));
-    console.log("userInfo.json saved");
   } else {
     fs.writeFileSync(
       ".auth/userInfo.json",
       JSON.stringify({ error: "not received" }, null, 2),
     );
-    console.warn("userInfo.json saved with error message");
   }
 
   await context.storageState({ path: storageStatePath });

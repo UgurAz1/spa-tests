@@ -5,9 +5,9 @@ export class LegalLinks extends BasePage {
   private readonly footerImprintLink = this.page.getByRole("link", {
     name: "Imprint",
   });
-  private readonly footerPrivacyLink = this.page.getByRole("link", {
-    name: "Privacy",
-  });
+  private readonly footerPrivacyLink = this.page.locator(
+    "//a[normalize-space(text())='Privacy']",
+  );
   private readonly footerDisclaimerLink = this.page.getByRole("link", {
     name: "Disclaimer",
   });
