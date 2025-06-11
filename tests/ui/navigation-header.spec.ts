@@ -1,4 +1,4 @@
-import { test, expect } from "../fixtures/fixtures"; // unser custom test importieren
+import { test, expect } from "../fixtures/pageObjectFixtures";
 
 test.describe("Test footer section", () => {
   test.beforeEach(async ({ page, pages }) => {

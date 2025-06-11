@@ -1,10 +1,8 @@
-import { expect, test } from "@playwright/test";
-import { PageManager } from "../../pages/PageManager";
+import { expect, test } from "../fixtures/pageObjectFixtures";
 import { UserHelper } from "../../utils/UserHelper";
 import { argosScreenshot } from "@argos-ci/playwright";
 
-test("TC-S01: Subscribe to newsletter", async ({ page }) => {
-  const pages = new PageManager(page);
+test("TC-S01: Subscribe to newsletter", async ({ page, pages }) => {
   const mailbox = pages.mailbox;
   const user = UserHelper.load();
 

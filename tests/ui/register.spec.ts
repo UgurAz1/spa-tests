@@ -1,5 +1,4 @@
-import { test } from "@playwright/test";
-import { PageManager } from "../../pages/PageManager";
+import { test } from "../fixtures/pageObjectFixtures";
 import { UserHelper } from "../../utils/UserHelper";
 import { generateFakeUser } from "../../helpers/userFactory";
 import { generatePassword } from "../../helpers/passwordFactory";
@@ -7,8 +6,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-test.skip("TC-R01: Registration and confirmation", async ({ page }) => {
-  const pages = new PageManager(page);
+test.skip("TC-R01: Registration and confirmation", async ({ page, pages }) => {
   const emailAddress = process.env.MAILBOX_ORG_EMAIL!;
   const password = generatePassword(12, "!A1");
   const account = pages.header.accountManager;

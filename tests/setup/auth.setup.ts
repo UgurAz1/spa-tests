@@ -1,16 +1,13 @@
-import { test as setup, chromium } from "@playwright/test";
+import { test as setup } from "../fixtures/pageObjectFixtures";
 import { UserHelper } from "../../utils/UserHelper";
 import { PageManager } from "../../pages/PageManager";
 import fs from "fs";
 const storageStatePath = ".auth/state.json";
 
-setup("Login and save storage state", async ({}) => {
+setup("Login and save storage state", async ({ page, pages, context }) => {
   const user = UserHelper.load();
-  const browser = await chromium.launch();
-  const context = await browser.newContext();
-  const page = await context.newPage();
-  const pages = new PageManager(page);
   const header = pages.header;
+
   fs.mkdirSync(".auth", { recursive: true });
 
   await page.goto("/login");

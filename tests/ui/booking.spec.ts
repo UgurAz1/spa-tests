@@ -1,11 +1,10 @@
-import { test, expect } from "@playwright/test";
-import { PageManager } from "../../pages/PageManager";
+import { test, expect } from "../fixtures/pageObjectFixtures";
 import { format } from "date-fns";
 
 test("TC-B01: Booking selection with required information and submit", async ({
   page,
+  pages,
 }) => {
-  const pages = new PageManager(page);
   const location = "München";
   const checkinOffsetInDays = 2;
   const durationInHours = 3;

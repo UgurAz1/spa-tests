@@ -1,4 +1,5 @@
-import { test, expect } from "../fixtures/fixtures";
+import { test, expect } from "../fixtures/pageObjectFixtures";
+
 test.describe("Test footer section", () => {
   test.beforeEach(async ({ page, pages }) => {
     await page.goto("/");

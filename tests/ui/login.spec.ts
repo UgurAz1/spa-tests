@@ -1,9 +1,7 @@
-import { test, expect } from "@playwright/test";
-import { PageManager } from "../../pages/PageManager";
+import { test, expect } from "../fixtures/pageObjectFixtures";
 import { UserHelper } from "../../utils/UserHelper";
 
-test("TC-L01: Login mit gültigen Daten", async ({ page }) => {
-  const pages = new PageManager(page);
+test("TC-L01: Login mit gültigen Daten", async ({ page, pages }) => {
   const account = pages.header.accountManager;
   const user = UserHelper.load();
 

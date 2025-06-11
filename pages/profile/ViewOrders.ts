@@ -28,15 +28,6 @@ export class ViewOrders extends BasePage {
     }
   }
 
-  // async cancelOrder(orderNumber: number) {
-  //   await this.order.nth(orderNumber - 1).click();
-  //   if (await this.cancelButton.isVisible()) {
-  //     await this.cancelButton.click();
-  //   } else {
-  //     await this.invoiceButton.click();
-  //   }
-  // }
-
   async downloadInvoice(orderNumber: number) {
     await this.order.nth(orderNumber - 1).click();
     await this.invoiceButton.click();

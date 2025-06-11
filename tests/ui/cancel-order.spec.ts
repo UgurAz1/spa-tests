@@ -1,9 +1,6 @@
-import { expect, test } from "@playwright/test";
-import { PageManager } from "../../pages/PageManager";
+import { expect, test } from "../fixtures/pageObjectFixtures";
 
-test("TC-D01: Cancel order by number", async ({ page }) => {
-  const pages = new PageManager(page);
-
+test("TC-D01: Cancel order by number", async ({ page, pages }) => {
   await page.goto("/");
 
   await pages.header.accountManager.openAccountEntryPoint();

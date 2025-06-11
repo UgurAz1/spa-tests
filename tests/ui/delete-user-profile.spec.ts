@@ -1,8 +1,6 @@
-import { test } from "@playwright/test";
-import { PageManager } from "../../pages/PageManager";
+import { test } from "../fixtures/pageObjectFixtures";
 
-test("TC-D01: Delete user profile", async ({ page }) => {
-  const pages = new PageManager(page);
+test("TC-D01: Delete user profile", async ({ page, pages }) => {
   const account = pages.header.accountManager;
 
   await page.goto("/");
