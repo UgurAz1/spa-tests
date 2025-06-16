@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
+import { BasePage } from "../BasePage";
 import { ChangeData } from "./ChangeData";
 import { ManageAddress } from "./ManageAddress";
 import { ViewOrders } from "./ViewOrders";

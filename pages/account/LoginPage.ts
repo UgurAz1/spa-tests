@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
+import { BasePage } from "../BasePage";
 import { RegisterPage } from "./RegisterPage";
 
 export class LoginPage extends BasePage {
@@ -17,7 +17,7 @@ export class LoginPage extends BasePage {
   readonly sendResetLinkButton = this.page.getByRole("button", {
     name: "Send link",
   });
-  readonly closeResetModalImg = this.page
+  readonly resetModalClose = this.page
     .locator("#modal")
     .getByRole("img", { name: "close" });
 
@@ -53,6 +53,6 @@ export class LoginPage extends BasePage {
   }
 
   async closeModal() {
-    await this.closeResetModalImg.click();
+    await this.resetModalClose.click();
   }
 }

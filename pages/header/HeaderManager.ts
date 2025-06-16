@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
+import { BasePage } from "../BasePage";
 import { HomePage } from "./HomePage";
 import { Navigation } from "../navigation/NavigationManager";
 import { LanguageSwitcher } from "./LanguageSwitcher";

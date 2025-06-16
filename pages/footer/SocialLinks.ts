@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
+import { BasePage } from "../BasePage";
 
 export class SocialLinks extends BasePage {
   private readonly footerInstagramLink: Locator;

@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { BasePage } from "./base/BasePage";
+import { BasePage } from "./BasePage";
 import { BookingManager } from "./booking/BookingManager";
 import { MailboxManager } from "./email/MailBoxManager";
 import { HeaderManager } from "./header/HeaderManager";

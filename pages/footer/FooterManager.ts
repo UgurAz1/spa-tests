@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { NavigationLinks } from "./NavigationLinks";
 import { LegalLinks } from "./LegalLinks";
 import { SocialLinks } from "./SocialLinks";
-import { BasePage } from "../base/BasePage";
+import { BasePage } from "../BasePage";
 
 export class FooterManager extends BasePage {
   private readonly navigationLinks: NavigationLinks;

@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
+import { BasePage } from "../BasePage";
 import { generateTimeSlots } from "../../helpers/timeHelpers";
 import dotenv from "dotenv";
 dotenv.config();

@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
+import { BasePage } from "../BasePage";
 
 export class LegalLinks extends BasePage {
   private readonly footerImprintLink = this.page.getByRole("link", {

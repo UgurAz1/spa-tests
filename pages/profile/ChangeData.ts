@@ -1,5 +1,5 @@
 import { Page, Locator } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
+import { BasePage } from "../BasePage";
 
 export class ChangeData extends BasePage {
   readonly deleteButton: Locator;

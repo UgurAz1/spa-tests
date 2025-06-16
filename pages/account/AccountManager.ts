@@ -1,14 +1,17 @@
 import { Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
+import { BasePage } from "../BasePage";
 import { LoginPage } from "./LoginPage";
 import { Profile } from "../profile/Profile";
+import { RegisterPage } from "./RegisterPage";
 
 export class AccountManager extends BasePage {
   private readonly loginPage: LoginPage;
+  private readonly registerPage: RegisterPage;
 
   constructor(page: Page) {
     super(page);
     this.loginPage = new LoginPage(page);
+    this.registerPage = new RegisterPage(page);
   }
 
   async openAccountEntryPoint() {
@@ -41,5 +44,9 @@ export class AccountManager extends BasePage {
 
   get profile() {
     return new Profile(this.page);
+  }
+
+  get register() {
+    return new RegisterPage(this.page);
   }
 }
