@@ -36,7 +36,7 @@ export class BasePage {
     const newsletterBanner = this.page.locator(
       ".bg-white > div:nth-child(2) > div > .border-myspa-blue",
     );
-    const banner = await newsletterBanner.click();
+    await newsletterBanner.click();
 
     await this.page
       .getByRole("textbox", { name: "E-Mail address *" })

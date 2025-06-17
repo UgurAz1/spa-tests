@@ -1,6 +1,5 @@
 import { test as setup } from "../../fixtures/pageObjectFixtures";
 import { UserHelper } from "../../utils/UserHelper";
-import { PageManager } from "../../pages/PageManager";
 import fs from "fs";
 const storageStatePath = ".auth/state.json";
 

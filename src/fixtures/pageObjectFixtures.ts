@@ -1,4 +1,4 @@
-import { test as base, Page, BrowserContext } from "@playwright/test";
+import { test as base, BrowserContext } from "@playwright/test";
 import { PageManager } from "../pages/PageManager";
 
 type pageManagerFixture = {
