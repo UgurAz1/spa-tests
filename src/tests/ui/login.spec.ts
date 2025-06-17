@@ -1,4 +1,4 @@
-import { test, expect } from "../fixtures/pageObjectFixtures";
+import { test, expect } from "../../fixtures/pageObjectFixtures";
 import { UserHelper } from "../../utils/UserHelper";
 
 test("TC-L01: Login mit gültigen Daten", async ({ page, pages }) => {

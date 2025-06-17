@@ -1,4 +1,4 @@
-import { test } from "../fixtures/pageObjectFixtures";
+import { test } from "../../fixtures/pageObjectFixtures";
 
 test("TC-D01: Delete user profile", async ({ page, pages }) => {
   const account = pages.header.accountManager;

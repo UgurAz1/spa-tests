@@ -1,4 +1,4 @@
-import { test as setup } from "../fixtures/pageObjectFixtures";
+import { test as setup } from "../../fixtures/pageObjectFixtures";
 import { UserHelper } from "../../utils/UserHelper";
 import { PageManager } from "../../pages/PageManager";
 import fs from "fs";

@@ -1,4 +1,4 @@
-import { test } from "../fixtures/pageObjectFixtures";
+import { test } from "../../fixtures/pageObjectFixtures";
 import { UserHelper } from "../../utils/UserHelper";
 import { generateFakeUser } from "../../helpers/userFactory";
 import { generatePassword } from "../../helpers/passwordFactory";

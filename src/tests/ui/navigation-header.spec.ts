@@ -1,4 +1,4 @@
-import { test, expect } from "../fixtures/pageObjectFixtures";
+import { test, expect } from "../../fixtures/pageObjectFixtures";
 
 test.describe("Test header section", () => {
   test.beforeEach(async ({ page, pages }) => {

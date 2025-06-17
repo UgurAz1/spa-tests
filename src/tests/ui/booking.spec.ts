@@ -1,4 +1,4 @@
-import { test, expect } from "../fixtures/pageObjectFixtures";
+import { test, expect } from "../../fixtures/pageObjectFixtures";
 import { format } from "date-fns";
 
 test("TC-B01: Booking selection with required information and submit", async ({

@@ -1,4 +1,4 @@
-import { expect, test } from "../fixtures/pageObjectFixtures";
+import { expect, test } from "../../fixtures/pageObjectFixtures";
 
 test("TC-D01: Cancel order by number", async ({ page, pages }) => {
   await page.goto("/");

@@ -4,7 +4,7 @@ dotenv.config();
 
 export default defineConfig({
   timeout: 240000,
-  testDir: "./tests",
+  testDir: "src/tests",
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,

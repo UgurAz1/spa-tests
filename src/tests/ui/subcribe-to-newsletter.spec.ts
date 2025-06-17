@@ -1,4 +1,4 @@
-import { expect, test } from "../fixtures/pageObjectFixtures";
+import { expect, test } from "../../fixtures/pageObjectFixtures";
 import { UserHelper } from "../../utils/UserHelper";
 import { argosScreenshot } from "@argos-ci/playwright";
 
