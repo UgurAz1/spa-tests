@@ -81,7 +81,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: login-screenshot
-          path: debug-after-login.png
+          path: screenshots/debug-after-login.png
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}

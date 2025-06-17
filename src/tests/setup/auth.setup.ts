@@ -14,7 +14,6 @@ setup("Login and save storage state", async ({ page, pages, context }) => {
   await header.acceptCookiesIfVisible();
   await header.languageSwitcher.selectLanguage("English");
   await header.accountManager.login.login(user.email, user.password);
-  await page.screenshot({ path: "debug-after-login2.png", fullPage: true });
 
   const [userInfoResponse] = await Promise.all([
     page.waitForResponse(
