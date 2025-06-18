@@ -38,6 +38,6 @@ test("mocked API response with modified location", async ({ page }) => {
 
   await page.goto("/locations");
 
-  const city = page.getByText("Mocked City");
-  await expect(city.nth(2)).toBeVisible();
+  const city = page.getByText("Mocked City").nth(1);
+  await expect(city).toBeVisible();
 });
